@@ -23,9 +23,9 @@ Zigm是一个用C#开发的Zig语言版本管理工具，类似于nvm或pyenv，
 
 | 平台 | 最低要求 | 推荐配置 |
 |------|----------|----------|
-| **Windows** | Windows 10/11 | Windows 11 |
-| **Linux** | Ubuntu 20.04+/CentOS 8+ | Ubuntu 22.04+ |
-| **macOS** | macOS 12+ | macOS 14+ |
+| **Windows** | Windows (Aot 支持版本，跟随.Net Aot) | Windows 11 |
+| **Linux** | Ubuntu (Aot 支持版本，跟随.Net Aot)  | Ubuntu 22.04+ |
+| **macOS** | macOS (Aot 支持版本，跟随.Net Aot)  | macOS 14+ |
 | **.NET** | .NET 10.0 | .NET 10.0+ |
 | **架构** | x64 | x64/arm64 |
 

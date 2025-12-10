@@ -1,70 +1,222 @@
-# Zigm - Zig Version Manager
+# Zigm - Zig Version Manager Detailed Documentation
 
-## Language Select
+## Language Selection
 - [中文文档](README.md)
 - [English Documentation](README-en.md)
 
 ## Project Introduction
 Zigm is a Zig programming language version management tool developed in C#, similar to nvm or pyenv. It helps developers easily download, install, and manage different versions of the Zig compiler. With Zigm, you can quickly switch between different Zig versions, making version testing and compatibility verification more convenient.
 
+### Core Features
+- ✅ Automatically detects current system architecture and operating system
+- ✅ Supports official Zig JSON API for version information
+- ✅ Supports detection of system-installed Zig (including Windows non-environment variable installations)
+- ✅ Supports installation and management of multiple Zig versions
+- ✅ Supports quick version switching via environment variables
+- ✅ Supports multiple languages (Chinese, English, Traditional Chinese)
+- ✅ AOT-compatible JSON serialization
+- ✅ Configuration files localized to program directory
+- ✅ Interactive command-line interface
+- ✅ Supports user-level and system-level environment variable settings
+
 ## System Requirements
-- **Operating System**: Windows 10/11, Linux (Ubuntu 20.04+, CentOS 8+, etc.)
-- **.NET Version**: .NET 10.0 or higher
-- **MacOS**: Requires manual compilation (project code supports MacOS)
+
+| Platform | Minimum Requirements | Recommended Configuration |
+|----------|----------------------|---------------------------|
+| **Windows** | Windows (Aot supported version, follows .Net Aot) | Windows 11 |
+| **Linux** | Ubuntu (Aot supported version, follows .Net Aot) | Ubuntu 22.04+ |
+| **macOS** | macOS (Aot supported version, follows .Net Aot) | macOS 14+ |
+| **.NET** | .NET 10.0 | .NET 10.0+ |
+| **Architecture** | x64 | x64/arm64 |
 
 ## Installation Methods
 
-### From Source Code Compilation
-1. Clone the project repository
-   ```bash
-   git clone <repository-url>
-   cd Zigm
-   ```
+### 1. Install from Release Package (Recommended)
 
-2. Build the project
-   ```bash
-   dotnet build -c Release
-   ```
+1. Download the release package for your platform from GitHub Releases
+2. Extract to any directory
+3. Add the extracted directory to your system PATH environment variable
+4. Run `zigm help` to verify installation success
 
-3. Publish executable files
-   ```bash
-   dotnet publish -c Release -r <runtime-identifier> --self-contained true
-   ```
-   Where `<runtime-identifier>` can be:
-   - Windows: win-x64, win-arm64
-   - Linux: linux-x64, linux-arm64
-   - MacOS: osx-x64, osx-arm64
+### 2. Compile from Source Code
 
-4. Add the publish directory to the system PATH, or let Zigm automatically handle it when first used in the downloaded directory (Windows allows choosing between user variables or system variables for PATH).
+```bash
+# Clone the project
+git clone <repository-url>
+cd Zigm
 
-## Usage
+# Build the project
+dotnet build -c Release
 
-### Command Line Operations
-Zigm supports the following command line parameters:
+# Publish executable files
+dotnet publish -c Release -r <runtime-identifier> --self-contained true
 
-| Command | Description |
-|---------|-------------|
-| `zigm start` | Launch console interactive operation interface |
-| `zigm list` | List all available Zig versions (downloadable) |
-| `zigm ls` | List locally installed Zig versions |
-| `zigm install <version>` | Install specified version of Zig |
-| `zigm use <version>` | Switch to specified version of Zig |
-| `zigm uninstall <version>` | Uninstall specified version of Zig |
-| `zigm current` | Show currently used Zig version |
-| `zigm update` | Update Zigm to the latest version |
-| `zigm config [show\|set\|reset]` | Manage Zigm configuration |
-| `zigm help` | Show help information |
+# Example: Publish Windows x64 version
+dotnet publish -c Release -r win-x64 --self-contained true
+```
 
-### Interactive Operations
-Launch the interactive interface via `zigm start` command. You can use up/down arrow keys to select operations and press Enter to execute.
+#### Supported Runtime Identifiers
+| Platform | Architecture | Runtime Identifier |
+|----------|--------------|--------------------|
+| Windows | x64 | win-x64 |
+| Windows | arm64 | win-arm64 |
+| Linux | x64 | linux-x64 |
+| Linux | arm64 | linux-arm64 |
+| macOS | x64 | osx-x64 |
+| macOS | arm64 | osx-arm64 |
 
-The interactive interface provides the following options:
-- View available Zig versions
-- View locally installed versions
-- Install new versions
-- Switch versions
-- Uninstall versions
-- Exit
+## Quick Start
+
+### 1. View Help Information
+```bash
+zigm help
+```
+
+### 2. List Available Zig Versions
+```bash
+zigm list
+```
+
+### 3. Install a Specific Version
+```bash
+zigm install 0.12.0
+```
+
+### 4. Switch to Installed Version
+```bash
+# User-level switch (current user only)
+zigm use 0.12.0
+
+# System-level switch (all users, requires administrator privileges)
+zigm use 0.12.0 --system
+```
+
+### 5. View Current Version
+```bash
+zigm current
+```
+
+### 6. Launch Interactive Interface
+```bash
+zigm start
+```
+
+## Detailed Command Line Instructions
+
+### 1. Launch Interactive Interface
+```bash
+zigm start
+```
+- Launches a console-based interactive menu
+- Supports up/down arrow keys for selection
+- Supports visual operation of all command-line functions
+
+### 2. List Available Versions
+```bash
+zigm list
+```
+- Fetches and displays all available stable Zig versions
+- Automatically filters versions suitable for the current system and architecture
+- Displays version numbers and types
+
+### 3. List Local Versions
+```bash
+zigm ls
+```
+- Displays all installed Zig versions
+- Marks the currently used version
+- Displays Zig versions detected on the system (non-Zigm managed)
+
+### 4. Install Specific Version
+```bash
+zigm install <version>
+```
+- Downloads and installs the specified Zig version
+- Automatically selects the appropriate installation package for the current system
+- Supports semantic versioning
+
+**Examples:**
+```bash
+zigm install 0.12.0
+zigm install 0.11.0
+```
+
+### 5. Switch Versions
+```bash
+zigm use <version> [--system]
+```
+- Switches to the specified Zig version
+- Updates the system PATH environment variable to use the specified version
+- `--system` option: Sets system-level environment variables (requires administrator privileges)
+
+**Examples:**
+```bash
+# User-level switch
+zigm use 0.12.0
+
+# System-level switch
+zigm use 0.12.0 --system
+```
+
+### 6. Uninstall Version
+```bash
+zigm uninstall <version>
+```
+- Uninstalls the specified Zig version
+- Automatically cleans up related files
+- Clears version settings if uninstalling the current version
+
+**Example:**
+```bash
+zigm uninstall 0.11.0
+```
+
+### 7. Display Current Version
+```bash
+zigm current
+```
+- Displays the currently used Zig version
+- Shows a prompt if no version is set
+
+### 8. Update Zigm
+```bash
+zigm update
+```
+- Checks for and updates Zigm to the latest version
+- Automatically downloads and replaces the current executable file
+
+### 9. Configuration Management
+```bash
+zigm config [show|set|reset]
+```
+- Manages Zigm configuration settings
+
+**Subcommands:**
+- `show`: Displays current configuration
+- `set <key> <value>`: Sets configuration item
+- `reset`: Resets configuration to default values
+
+**Examples:**
+```bash
+# Show configuration
+zigm config show
+
+# Set language to English
+zigm config set Language en
+
+# Set download timeout to 120 seconds
+zigm config set DownloadTimeout 120
+
+# Reset configuration
+zigm config reset
+```
+
+### 10. Show Help
+```bash
+zigm help
+```
+- Displays all supported commands and descriptions
+- Provides usage examples
 
 ## Configuration Management
 
@@ -73,7 +225,7 @@ The configuration file is located in the `ZigmConfig` folder under the program d
 - **Windows**: `[Program Directory]\ZigmConfig\config.json`
 - **Linux/macOS**: `[Program Directory]/ZigmConfig/config.json`
 
-### Configuration Options
+### Configuration Item Details
 
 | Configuration Item | Type | Default Value | Description |
 |-------------------|------|---------------|-------------|
@@ -83,9 +235,9 @@ The configuration file is located in the `ZigmConfig` folder under the program d
 | DownloadTimeout | int | `300` | Download timeout in seconds |
 | DefaultSource | string | `official` | Default Zig version source |
 | DownloadSource | string | `https://ziglang.org/download/` | Download source URL (can be a mirror) |
-| Language | string | `null` | Localization language setting |
+| Language | string | `null` | Interface language setting |
 
-### Configuration Examples
+### Configuration Example
 ```json
 {
   "StoragePath": "C:\\Program Files\\Zigm\\ZigmConfig\\zig-versions",
@@ -94,7 +246,7 @@ The configuration file is located in the `ZigmConfig` folder under the program d
   "DownloadTimeout": 300,
   "DefaultSource": "official",
   "DownloadSource": "https://ziglang.org/download/",
-  "Language": "en"
+  "Language": "zh-Hant"
 }
 ```
 
@@ -117,12 +269,16 @@ zigm config set Language zh-Hant
 zigm config set Language zh-CN
 ```
 
+### Automatic Language Detection
+- If no Language configuration is set, the system automatically uses the current operating system language setting
+- Supported languages are automatically switched, unsupported languages use the default language (Chinese)
+
 ## Advanced Features
 
 ### 1. System Zig Detection
 - Automatically detects Zig versions installed on the system
 - Displays in the output of `zigm ls` command
-- Supports detecting Zig installations from Windows registry (non-environment variable)
+- Supports detection of Zig installations from Windows registry (non-environment variable)
 
 ### 2. Environment Variable Management
 - Automatically updates system PATH environment variable
@@ -180,6 +336,33 @@ Zigm/
 └── Zigm.csproj            # Project configuration file
 ```
 
+## Common Questions
+
+### 1. What to do if installation fails?
+- Check if network connection is normal
+- Ensure write permissions to the installation directory
+- Try increasing the download timeout by modifying the DownloadTimeout configuration item
+- View detailed error messages and report
+
+### 2. Why doesn't version switching take effect?
+- Close and reopen the terminal window
+- Check if environment variables are set correctly
+- Try running the switch command with administrator privileges
+
+### 3. How to use a mirror source?
+```bash
+zigm config set DownloadSource <mirror-url>
+```
+
+### 4. What to do if the configuration file is lost?
+- Rerun Zigm, which will automatically generate a default configuration file
+- Use `zigm config reset` to reset the configuration
+
+### 5. How to uninstall Zigm?
+- Delete the Zigm program directory
+- Remove the Zigm path from environment variables
+- Delete the ZigmConfig folder
+
 ## Contribution Guide
 
 Contributions to Zigm are welcome! Please follow these steps:
@@ -194,20 +377,20 @@ Contributions to Zigm are welcome! Please follow these steps:
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Contact Information
-
-For questions or suggestions, please contact via:
-- GitHub Issues: <repository-issues-url>
-
 ## Changelog
 
 ### 0.1.0 (In Development)
 - Initial version
-- Basic command line parameter processing
-- Interactive interface framework
+- Basic Zig version management functionality
+- Interactive interface support
 - Multi-language support
 - System Zig detection
 - AOT compatibility
+
+## Contact Information
+
+For questions or suggestions, please contact via:
+- GitHub Issues: <repository-issues-url>
 
 ---
 
