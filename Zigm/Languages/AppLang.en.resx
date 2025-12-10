@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="应用名称" xml:space="preserve">
+    <value>Zigm</value>
+    <comment>Zigm</comment>
+  </data>
+  <data name="启动交互式界面" xml:space="preserve">
+    <value>Starting interactive interface...</value>
+    <comment>Starting interactive interface...</comment>
+  </data>
+  <data name="列出可用版本" xml:space="preserve">
+    <value>Listing all available Zig versions...</value>
+    <comment>Listing all available Zig versions...</comment>
+  </data>
+  <data name="获取版本信息" xml:space="preserve">
+    <value>Fetching version information, please wait...</value>
+    <comment>Fetching version information, please wait...</comment>
+  </data>
+  <data name="可用稳定版本" xml:space="preserve">
+    <value>Available Zig stable versions:</value>
+    <comment>Available Zig stable versions:</comment>
+  </data>
+  <data name="未获取到版本" xml:space="preserve">
+    <value>Failed to retrieve available Zig version information, please check network connection</value>
+    <comment>Failed to retrieve available Zig version information, please check network connection</comment>
+  </data>
+  <data name="共找到版本" xml:space="preserve">
+    <value>Found {0} versions in total</value>
+    <comment>Found N versions in total</comment>
+  </data>
+  <data name="列出本地版本" xml:space="preserve">
+    <value>Listing locally installed Zig versions...</value>
+    <comment>Listing locally installed Zig versions...</comment>
+  </data>
+  <data name="系统已安装信息" xml:space="preserve">
+    <value>Zig information installed in the system:</value>
+    <comment>Zig information installed in the system:</comment>
+  </data>
+  <data name="已安装是" xml:space="preserve">
+    <value>Installed: Yes</value>
+    <comment>Installed: Yes</comment>
+  </data>
+  <data name="已安装否" xml:space="preserve">
+    <value>Installed: No</value>
+    <comment>Installed: No</comment>
+  </data>
+  <data name="版本" xml:space="preserve">
+    <value>Version: {0}</value>
+    <comment>Version: [version]</comment>
+  </data>
+  <data name="路径" xml:space="preserve">
+    <value>Path: {0}</value>
+    <comment>Path: [path]</comment>
+  </data>
+  <data name="未管理任何版本" xml:space="preserve">
+    <value>Zigm is not managing any local Zig versions</value>
+    <comment>Zigm is not managing any local Zig versions</comment>
+  </data>
+  <data name="请指定安装版本" xml:space="preserve">
+    <value>Please specify the Zig version to install, for example: zigm install 0.12.0</value>
+    <comment>Please specify the Zig version to install, for example: zigm install 0.12.0</comment>
+  </data>
+  <data name="请指定使用版本" xml:space="preserve">
+    <value>Please specify the Zig version to use, for example: zigm use 0.11.0</value>
+    <comment>Please specify the Zig version to use, for example: zigm use 0.11.0</comment>
+  </data>
+  <data name="请指定卸载版本" xml:space="preserve">
+    <value>Please specify the Zig version to uninstall, for example: zigm uninstall 0.10.0</value>
+    <comment>Please specify the Zig version to uninstall, for example: zigm uninstall 0.10.0</comment>
+  </data>
+  <data name="显示当前版本" xml:space="preserve">
+    <value>Displaying current Zig version...</value>
+    <comment>Displaying current Zig version...</comment>
+  </data>
+  <data name="当前使用版本" xml:space="preserve">
+    <value>Current Zig version in use: {0}</value>
+    <comment>Current Zig version in use: [version]</comment>
+  </data>
+  <data name="未设置当前版本" xml:space="preserve">
+    <value>No current Zig version has been set</value>
+    <comment>No current Zig version has been set</comment>
+  </data>
+  <data name="更新到最新版本" xml:space="preserve">
+    <value>Updating Zigm to the latest version...</value>
+    <comment>Updating Zigm to the latest version...</comment>
+  </data>
+  <data name="Zigm未管理本地版本" xml:space="preserve">
+    <value>Zigm is not managing any local Zig versions</value>
+    <comment>Zigm is not managing any local Zig versions</comment>
+  </data>
+  <data name="请选择操作" xml:space="preserve">
+    <value>Please select an operation:</value>
+    <comment>Please select an operation:</comment>
+  </data>
+  <data name="使用上下箭头选择" xml:space="preserve">
+    <value>Use up/down arrow keys to select, press Enter to execute, press Esc to exit</value>
+    <comment>Use up/down arrow keys to select, press Enter to execute, press Esc to exit</comment>
+  </data>
+  <data name="查看可用版本" xml:space="preserve">
+    <value>View available Zig versions</value>
+    <comment>View available Zig versions</comment>
+  </data>
+  <data name="查看已安装版本" xml:space="preserve">
+    <value>View locally installed versions</value>
+    <comment>View locally installed versions</comment>
+  </data>
+  <data name="安装新版本" xml:space="preserve">
+    <value>Install new version</value>
+    <comment>Install new version</comment>
+  </data>
+  <data name="切换版本" xml:space="preserve">
+    <value>Switch version</value>
+    <comment>Switch version</comment>
+  </data>
+  <data name="卸载版本" xml:space="preserve">
+    <value>Uninstall version</value>
+    <comment>Uninstall version</comment>
+  </data>
+  <data name="退出" xml:space="preserve">
+    <value>Exit</value>
+    <comment>Exit</comment>
+  </data>
+  <data name="可用的版本" xml:space="preserve">
+    <value>Available versions:</value>
+    <comment>Available versions:</comment>
+  </data>
+  <data name="本地未安装任何版本" xml:space="preserve">
+    <value>No local Zig versions are installed, cannot switch</value>
+    <comment>No local Zig versions are installed, cannot switch</comment>
+  </data>
+  <data name="请选择要切换的版本序号" xml:space="preserve">
+    <value>Please select the version number to switch to: </value>
+    <comment>Please select the version number to switch to: </comment>
+  </data>
+  <data name="无效的选择" xml:space="preserve">
+    <value>Invalid selection</value>
+    <comment>Invalid selection</comment>
+  </data>
+  <data name="卸载Zig版本" xml:space="preserve">
+    <value>Uninstall Zig version</value>
+    <comment>Uninstall Zig version</comment>
+  </data>
+  <data name="本地未安装任何版本无法卸载" xml:space="preserve">
+    <value>No local Zig versions are installed, cannot uninstall</value>
+    <comment>No local Zig versions are installed, cannot uninstall</comment>
+  </data>
+  <data name="请选择要卸载的版本序号" xml:space="preserve">
+    <value>Please select the version number to uninstall: </value>
+    <comment>Please select the version number to uninstall: </comment>
+  </data>
+  <data name="按任意键返回主菜单" xml:space="preserve">
+    <value>Press any key to return to the main menu...</value>
+    <comment>Press any key to return to the main menu...</comment>
+  </data>
+  <data name="按任意键退出" xml:space="preserve">
+    <value>Press any key to exit...</value>
+    <comment>Press any key to exit...</comment>
+  </data>
+  <data name="安装Zig版本" xml:space="preserve">
+    <value>Install Zig version</value>
+    <comment>Install Zig version</comment>
+  </data>
+  <data name="请输入要安装的版本号" xml:space="preserve">
+    <value>Please enter the version number to install (e.g., 0.12.0): </value>
+    <comment>Please enter the version number to install (e.g., 0.12.0): </comment>
+  </data>
+  <data name="版本号不能为空" xml:space="preserve">
+    <value>Version number cannot be empty</value>
+    <comment>Version number cannot be empty</comment>
+  </data>
+  <data name="正在下载" xml:space="preserve">
+    <value>Downloading: {0}</value>
+    <comment>Downloading: [filename]</comment>
+  </data>
+  <data name="从" xml:space="preserve">
+    <value>From: {0}</value>
+    <comment>From: [download link]</comment>
+  </data>
+  <data name="到" xml:space="preserve">
+    <value>To: {0}</value>
+    <comment>To: [save path]</comment>
+  </data>
+  <data name="下载完成" xml:space="preserve">
+    <value>Download completed</value>
+    <comment>Download completed</comment>
+  </data>
+  <data name="正在安装版本" xml:space="preserve">
+    <value>Installing version: {0}</value>
+    <comment>Installing version: [version]</comment>
+  </data>
+  <data name="版本安装成功" xml:space="preserve">
+    <value>Version {0} installed successfully</value>
+    <comment>Version [version] installed successfully</comment>
+  </data>
+  <data name="已将版本设置为当前版本" xml:space="preserve">
+    <value>Version {0} has been set as the current version</value>
+    <comment>Version [version] has been set as the current version</comment>
+  </data>
+  <data name="版本安装失败" xml:space="preserve">
+    <value>Failed to install version {0}</value>
+    <comment>Failed to install version [version]</comment>
+  </data>
+  <data name="找不到指定版本" xml:space="preserve">
+    <value>Specified version not found: {0}</value>
+    <comment>Specified version not found: [version]</comment>
+  </data>
+  <data name="不支持当前系统架构" xml:space="preserve">
+    <value>Current system architecture not supported: {0}</value>
+    <comment>Current system architecture not supported: [architecture]</comment>
+  </data>
+  <data name="无效的下载链接" xml:space="preserve">
+    <value>Invalid download link: {0}</value>
+    <comment>Invalid download link: [link]</comment>
+  </data>
+  <data name="找不到Zig可执行文件" xml:space="preserve">
+    <value>Zig executable not found: {0}</value>
+    <comment>Zig executable not found: [path]</comment>
+  </data>
+  <data name="版本未安装" xml:space="preserve">
+    <value>Version {0} is not installed</value>
+    <comment>Version [version] is not installed</comment>
+  </data>
+  <data name="已成功切换到版本" xml:space="preserve">
+    <value>Successfully switched to version {0}</value>
+    <comment>Successfully switched to version [version]</comment>
+  </data>
+  <data name="切换到版本失败" xml:space="preserve">
+    <value>Failed to switch to version {0}, environment variable update failed</value>
+    <comment>Failed to switch to version [version], environment variable update failed</comment>
+  </data>
+  <data name="版本是当前使用的版本无法卸载" xml:space="preserve">
+    <value>Version {0} is the currently used version, cannot uninstall</value>
+    <comment>Version [version] is the currently used version, cannot uninstall</comment>
+  </data>
+  <data name="版本卸载成功" xml:space="preserve">
+    <value>Version {0} uninstalled successfully</value>
+    <comment>Version [version] uninstalled successfully</comment>
+  </data>
+  <data name="版本卸载失败" xml:space="preserve">
+    <value>Failed to uninstall version {0}</value>
+    <comment>Failed to uninstall version [version]</comment>
+  </data>
+  <data name="Zigm管理的本地Zig版本" xml:space="preserve">
+    <value>Local Zig versions managed by Zigm:</value>
+    <comment>Local Zig versions managed by Zigm:</comment>
+  </data>
+  <data name="共安装了版本" xml:space="preserve">
+    <value>Installed {0} versions in total</value>
+    <comment>Installed [number] versions in total</comment>
+  </data>
+  <data name="可选参数系统级" xml:space="preserve">
+    <value>Optional parameter: --system (system-level installation, requires administrator privileges)</value>
+    <comment>Optional parameter: --system (system-level installation, requires administrator privileges)</comment>
+  </data>
+  <data name="已将Zig添加到系统PATH中" xml:space="preserve">
+    <value>Added Zig {0} {1} to system PATH</value>
+    <comment>Added Zig [version] [level] to system PATH</comment>
+  </data>
+  <data name="运行完毕后重启PowerShell实例" xml:space="preserve">
+    <value>Please restart your PowerShell instance after completion.</value>
+    <comment>Please restart your PowerShell instance after completion.</comment>
+  </data>
+  <data name="已将Zig添加到PATH中" xml:space="preserve">
+    <value>Added Zig {0} to system PATH</value>
+    <comment>Added Zig [version] to system PATH</comment>
+  </data>
+  <data name="完成后请重新加载启动文件或重启Shell" xml:space="preserve">
+    <value>Please reload your startup file or restart your shell after completion.</value>
+    <comment>Please reload your startup file or restart your shell after completion.</comment>
+  </data>
+  <data name="修改系统环境变量需要管理员权限" xml:space="preserve">
+    <value>Modifying system environment variables requires administrator privileges, please run the program as administrator.</value>
+    <comment>Modifying system environment variables requires administrator privileges, please run the program as administrator.</comment>
+  </data>
+  <data name="修改环境变量失败" xml:space="preserve">
+    <value>Failed to modify environment variables: {0}</value>
+    <comment>Failed to modify environment variables: [error message]</comment>
+  </data>
+  <data name="环境变量已刷新" xml:space="preserve">
+    <value>Environment variables have been refreshed</value>
+    <comment>Environment variables have been refreshed</comment>
+  </data>
+  <data name="官方PATH设置建议" xml:space="preserve">
+    <value>Official PATH setup recommendations:</value>
+    <comment>Official PATH setup recommendations:</comment>
+  </data>
+  <data name="在Windows上设置PATH" xml:space="preserve">
+    <value>Setting PATH on Windows:</value>
+    <comment>Setting PATH on Windows:</comment>
+  </data>
+  <data name="要在Windows上设置PATH请在PowerShell中运行以下任一代码片段" xml:space="preserve">
+    <value>To set PATH on Windows, run any of the following code snippets in PowerShell:</value>
+    <comment>To set PATH on Windows, run any of the following code snippets in PowerShell:</comment>
+  </data>
+  <data name="系统级安装管理员PowerShell" xml:space="preserve">
+    <value>System-level installation (administrator PowerShell):</value>
+    <comment>System-level installation (administrator PowerShell):</comment>
+  </data>
+  <data name="用户级安装PowerShell" xml:space="preserve">
+    <value>User-level installation (PowerShell):</value>
+    <comment>User-level installation (PowerShell):</comment>
+  </data>
+  <data name="在LinuxMacOSBSD上设置PATH" xml:space="preserve">
+    <value>Setting PATH on Linux, MacOS, BSD:</value>
+    <comment>Setting PATH on Linux, MacOS, BSD:</comment>
+  </data>
+  <data name="将zig二进制镜像的位置添加到PATH环境变量中" xml:space="preserve">
+    <value>Add the location of the zig binary to your PATH environment variable.</value>
+    <comment>Add the location of the zig binary to your PATH environment variable.</comment>
+  </data>
+  <data name="这通常通过将export行添加到你的shell启动脚本" xml:space="preserve">
+    <value>This is typically done by adding an export line to your shell startup script (.profile, .zshrc, ...)</value>
+    <comment>This is typically done by adding an export line to your shell startup script (.profile, .zshrc, ...)</comment>
+  </data>
+  <data name="无效的config命令用法" xml:space="preserve">
+    <value>Invalid config command usage</value>
+    <comment>Invalid config command usage</comment>
+  </data>
+  <data name="用法" xml:space="preserve">
+    <value>Usage:</value>
+    <comment>Usage</comment>
+  </data>
+  <data name="显示当前配置" xml:space="preserve">
+    <value>Display current configuration</value>
+    <comment>Display current configuration</comment>
+  </data>
+  <data name="设置配置项" xml:space="preserve">
+    <value>Set configuration item</value>
+    <comment>Set configuration item</comment>
+  </data>
+  <data name="重置配置为默认值" xml:space="preserve">
+    <value>Reset configuration to default values</value>
+    <comment>Reset configuration to default values</comment>
+  </data>
+  <data name="名称" xml:space="preserve">
+    <value>Zig Version Manager</value>
+    <comment>Zig Version Manager</comment>
+  </data>
+  <data name="未知选项" xml:space="preserve">
+    <value>Unknown option</value>
+    <comment>Unknown option</comment>
+  </data>
+  <data name="当前版本" xml:space="preserve">
+    <value>Current version</value>
+    <comment>Current version</comment>
+  </data>
+  <data name="加载配置文件失败" xml:space="preserve">
+    <value>Failed to load configuration file: {0}</value>
+    <comment>Failed to load configuration file: [error message]</comment>
+  </data>
+  <data name="将使用默认配置" xml:space="preserve">
+    <value>Will use default configuration</value>
+    <comment>Will use default configuration</comment>
+  </data>
+  <data name="保存配置文件失败" xml:space="preserve">
+    <value>Failed to save configuration file: {0}</value>
+    <comment>Failed to save configuration file: [error message]</comment>
+  </data>
+  <data name="配置项已更新" xml:space="preserve">
+    <value>Configuration item {0} has been updated to {1}</value>
+    <comment>Configuration item [key] has been updated to [value]</comment>
+  </data>
+  <data name="更新配置项失败" xml:space="preserve">
+    <value>Failed to update configuration item {0}: {1}</value>
+    <comment>Failed to update configuration item [key]: [error message]</comment>
+  </data>
+  <data name="未知的配置项" xml:space="preserve">
+    <value>Unknown configuration item: {0}</value>
+    <comment>Unknown configuration item: [key]</comment>
+  </data>
+  <data name="存储路径" xml:space="preserve">
+    <value>Storage Path: {0}</value>
+    <comment>Storage Path: [path]</comment>
+  </data>
+  <data name="自动检查更新" xml:space="preserve">
+    <value>Auto Check Updates: {0}</value>
+    <comment>Auto Check Updates: [boolean]</comment>
+  </data>
+  <data name="下载超时" xml:space="preserve">
+    <value>Download Timeout: {0} {1}</value>
+    <comment>Download Timeout: [seconds] [unit]</comment>
+  </data>
+  <data name="秒" xml:space="preserve">
+    <value>seconds</value>
+    <comment>seconds (time unit)</comment>
+  </data>
+  <data name="默认源" xml:space="preserve">
+    <value>Default Source: {0}</value>
+    <comment>Default Source: [source]</comment>
+  </data>
+  <data name="语言设置" xml:space="preserve">
+    <value>Language: {0}</value>
+    <comment>Language: [language code]</comment>
+  </data>
+  <data name="默认" xml:space="preserve">
+    <value>Default</value>
+    <comment>Default value</comment>
+  </data>
+  <data name="未设置" xml:space="preserve">
+    <value>Not Set</value>
+    <comment>Not Set value</comment>
+  </data>
+  <data name="系统默认" xml:space="preserve">
+    <value>System Default</value>
+    <comment>System Default value</comment>
+  </data>
+  <data name="当前版本配置" xml:space="preserve">
+    <value>Current Version: {0}</value>
+    <comment>Current Version configuration display: [version]</comment>
+  </data>
+</root>

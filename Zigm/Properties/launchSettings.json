@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Zigm": {
+      "commandName": "Project",
+      "commandLineArgs": "start"
+    }
+  }
+}
