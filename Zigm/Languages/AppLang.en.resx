@@ -133,8 +133,8 @@
     <value>Fetching version information, please wait...</value>
     <comment>Fetching version information, please wait...</comment>
   </data>
-  <data name="可用稳定版本" xml:space="preserve">
-    <value>Available Zig stable versions:</value>
+  <data name="可用版本" xml:space="preserve">
+    <value>Available Zig versions:</value>
     <comment>Available Zig stable versions:</comment>
   </data>
   <data name="未获取到版本" xml:space="preserve">

@@ -241,20 +241,20 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 可用的Zig版本: 的本地化字符串。
+        /// </summary>
+        public static string 可用版本 {
+            get {
+                return ResourceManager.GetString("可用版本", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 可用的版本： 的本地化字符串。
         /// </summary>
         public static string 可用的版本 {
             get {
                 return ResourceManager.GetString("可用的版本", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 可用的Zig稳定版本: 的本地化字符串。
-        /// </summary>
-        public static string 可用稳定版本 {
-            get {
-                return ResourceManager.GetString("可用稳定版本", resourceCulture);
             }
         }
         

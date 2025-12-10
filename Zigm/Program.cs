@@ -19,9 +19,9 @@ if (!string.IsNullOrEmpty(config.Language))
     try
     {
         // 直接设置文化，不进行验证，因为我们知道支持哪些语言
-        AppLang.Culture = config.Language == null ? CultureInfo.InvariantCulture : CultureInfo.GetCultureInfo(config.Language);
+        AppLang.Culture = CultureInfo.GetCultureInfo(config.Language);
     }
-    catch (Exception ex)
+    catch (Exception)
     {
     }
 }
@@ -47,7 +47,7 @@ switch (command)
         if (versions.Count > 0)
         {
             Console.WriteLine();
-            Console.WriteLine(AppLang.可用稳定版本);
+            Console.WriteLine(AppLang.可用版本);
             Console.WriteLine("---------------------------------");
             foreach (var version in versions)
             {

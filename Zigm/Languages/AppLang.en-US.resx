@@ -129,8 +129,8 @@
   <data name="获取版本信息" xml:space="preserve">
     <value>Fetching version information, please wait...</value>
   </data>
-  <data name="可用稳定版本" xml:space="preserve">
-    <value>Available Zig stable versions:</value>
+  <data name="可用版本" xml:space="preserve">
+    <value>Available Zig versions:</value>
   </data>
   <data name="未获取到版本" xml:space="preserve">
     <value>Failed to retrieve available Zig version information, please check network connection</value>
@@ -398,5 +398,35 @@
   <data name="未知的配置项" xml:space="preserve">
     <value>Unknown configuration item: {0}</value>
     <comment>Unknown configuration item: [key]</comment>
+  </data>
+  <data name="存储路径" xml:space="preserve">
+    <value>Storage Path: {0}</value>
+  </data>
+  <data name="自动检查更新" xml:space="preserve">
+    <value>Auto Check Updates: {0}</value>
+  </data>
+  <data name="下载超时" xml:space="preserve">
+    <value>Download Timeout: {0} {1}</value>
+  </data>
+  <data name="秒" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="默认源" xml:space="preserve">
+    <value>Default Source: {0}</value>
+  </data>
+  <data name="语言设置" xml:space="preserve">
+    <value>Language: {0}</value>
+  </data>
+  <data name="默认" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="未设置" xml:space="preserve">
+    <value>Not Set</value>
+  </data>
+  <data name="系统默认" xml:space="preserve">
+    <value>System Default</value>
+  </data>
+  <data name="当前版本配置" xml:space="preserve">
+    <value>Current Version: {0}</value>
   </data>
 </root>

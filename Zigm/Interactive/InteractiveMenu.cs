@@ -173,7 +173,7 @@ public class InteractiveMenu
         {
             Console.Clear();
             DrawHeader();
-            Console.WriteLine(AppLang.可用稳定版本);
+            Console.WriteLine(AppLang.可用版本);
             Console.WriteLine("---------------------------------");
 
             var versions = await _zigVersionService.GetStableVersionsAsync();
