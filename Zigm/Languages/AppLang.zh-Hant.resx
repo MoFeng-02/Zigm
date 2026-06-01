@@ -119,261 +119,347 @@
   </resheader>
   <data name="应用名称" xml:space="preserve">
     <value>Zigm</value>
+    <comment>Zigm</comment>
   </data>
   <data name="启动交互式界面" xml:space="preserve">
     <value>啓動交互式界面...</value>
+    <comment>啓動交互式界面...</comment>
   </data>
   <data name="列出可用版本" xml:space="preserve">
     <value>列出所有可用的Zig版本...</value>
+    <comment>列出所有可用的Zig版本...</comment>
   </data>
   <data name="获取版本信息" xml:space="preserve">
     <value>正在獲取版本信息，請稍候...</value>
+    <comment>正在獲取版本信息，請稍候...</comment>
   </data>
   <data name="可用版本" xml:space="preserve">
     <value>可用的Zig版本:</value>
+    <comment>可用的Zig版本:</comment>
   </data>
   <data name="未获取到版本" xml:space="preserve">
     <value>未能獲取到可用的Zig版本信息，請檢查網絡連接</value>
+    <comment>未能獲取到可用的Zig版本信息，請檢查網絡連接</comment>
   </data>
   <data name="共找到版本" xml:space="preserve">
     <value>共找到 {0} 個版本</value>
+    <comment>共找到 N 個版本</comment>
   </data>
   <data name="列出本地版本" xml:space="preserve">
     <value>列出本地已安裝的Zig版本...</value>
+    <comment>列出本地已安裝的Zig版本...</comment>
   </data>
   <data name="系统已安装信息" xml:space="preserve">
     <value>系統中已安裝的Zig信息:</value>
+    <comment>系統中已安裝的Zig信息:</comment>
   </data>
   <data name="已安装是" xml:space="preserve">
     <value>已安裝: 是</value>
+    <comment>已安裝: 是</comment>
   </data>
   <data name="已安装否" xml:space="preserve">
     <value>已安裝: 否</value>
+    <comment>已安裝: 否</comment>
   </data>
   <data name="版本" xml:space="preserve">
     <value>版本: {0}</value>
+    <comment>版本: [版本號]</comment>
   </data>
   <data name="路径" xml:space="preserve">
     <value>路徑: {0}</value>
+    <comment>路徑: [路徑]</comment>
   </data>
   <data name="未管理任何版本" xml:space="preserve">
     <value>Zigm未管理任何本地Zig版本</value>
+    <comment>Zigm未管理任何本地Zig版本</comment>
   </data>
   <data name="请指定安装版本" xml:space="preserve">
     <value>請指定要安裝的Zig版本，例如: zigm install 0.12.0</value>
+    <comment>請指定要安裝的Zig版本，例如: zigm install 0.12.0</comment>
   </data>
   <data name="请指定使用版本" xml:space="preserve">
     <value>請指定要使用的Zig版本，例如: zigm use 0.11.0</value>
+    <comment>請指定要使用的Zig版本，例如: zigm use 0.11.0</comment>
   </data>
   <data name="请指定卸载版本" xml:space="preserve">
     <value>請指定要卸載的Zig版本，例如: zigm uninstall 0.10.0</value>
+    <comment>請指定要卸載的Zig版本，例如: zigm uninstall 0.10.0</comment>
   </data>
   <data name="显示当前版本" xml:space="preserve">
     <value>顯示當前使用的Zig版本...</value>
+    <comment>顯示當前使用的Zig版本...</comment>
   </data>
   <data name="当前使用版本" xml:space="preserve">
     <value>當前使用的Zig版本: {0}</value>
+    <comment>當前使用的Zig版本: [版本號]</comment>
   </data>
   <data name="未设置当前版本" xml:space="preserve">
     <value>未設置當前使用的Zig版本</value>
+    <comment>未設置當前使用的Zig版本</comment>
   </data>
   <data name="更新到最新版本" xml:space="preserve">
     <value>更新Zigm到最新版本...</value>
+    <comment>更新Zigm到最新版本...</comment>
   </data>
   <data name="Zigm未管理本地版本" xml:space="preserve">
     <value>Zigm未管理任何本地Zig版本</value>
+    <comment>Zigm未管理任何本地Zig版本</comment>
   </data>
   <data name="请选择操作" xml:space="preserve">
     <value>請選擇操作：</value>
+    <comment>請選擇操作：</comment>
   </data>
   <data name="使用上下箭头选择" xml:space="preserve">
     <value>使用上下箭頭鍵選擇，按Enter鍵執行，按Esc鍵退出</value>
+    <comment>使用上下箭頭鍵選擇，按Enter鍵執行，按Esc鍵退出</comment>
   </data>
   <data name="查看可用版本" xml:space="preserve">
     <value>查看可用Zig版本</value>
+    <comment>查看可用Zig版本</comment>
   </data>
   <data name="查看已安装版本" xml:space="preserve">
     <value>查看本地已安裝版本</value>
+    <comment>查看本地已安裝版本</comment>
   </data>
   <data name="安装新版本" xml:space="preserve">
     <value>安裝新版本</value>
+    <comment>安裝新版本</comment>
   </data>
   <data name="切换版本" xml:space="preserve">
     <value>切換版本</value>
+    <comment>切換版本</comment>
   </data>
   <data name="卸载版本" xml:space="preserve">
     <value>卸載版本</value>
+    <comment>卸載版本</comment>
   </data>
   <data name="退出" xml:space="preserve">
     <value>退出</value>
+    <comment>退出</comment>
   </data>
   <data name="可用的版本" xml:space="preserve">
     <value>可用的版本：</value>
+    <comment>可用的版本：</comment>
   </data>
   <data name="本地未安装任何版本" xml:space="preserve">
     <value>本地未安裝任何Zig版本，無法切換</value>
+    <comment>本地未安裝任何Zig版本，無法切換</comment>
   </data>
   <data name="请选择要切换的版本序号" xml:space="preserve">
     <value>請選擇要切換的版本序號: </value>
+    <comment>請選擇要切換的版本序號: </comment>
   </data>
   <data name="无效的选择" xml:space="preserve">
     <value>無效的選擇</value>
+    <comment>無效的選擇</comment>
   </data>
   <data name="卸载Zig版本" xml:space="preserve">
     <value>卸載Zig版本</value>
+    <comment>卸載Zig版本</comment>
   </data>
   <data name="本地未安装任何版本无法卸载" xml:space="preserve">
     <value>本地未安裝任何Zig版本，無法卸載</value>
+    <comment>本地未安裝任何Zig版本，無法卸載</comment>
   </data>
   <data name="请选择要卸载的版本序号" xml:space="preserve">
     <value>請選擇要卸載的版本序號: </value>
+    <comment>請選擇要卸載的版本序號: </comment>
   </data>
   <data name="按任意键返回主菜单" xml:space="preserve">
     <value>按任意鍵返回主菜單...</value>
+    <comment>按任意鍵返回主菜單...</comment>
   </data>
   <data name="按任意键退出" xml:space="preserve">
     <value>按任意鍵退出...</value>
+    <comment>按任意鍵退出...</comment>
   </data>
   <data name="安装Zig版本" xml:space="preserve">
     <value>安裝Zig版本</value>
+    <comment>安裝Zig版本</comment>
   </data>
   <data name="请输入要安装的版本号" xml:space="preserve">
     <value>請輸入要安裝的版本號（例如：0.12.0）: </value>
+    <comment>請輸入要安裝的版本號（例如：0.12.0）: </comment>
   </data>
   <data name="版本号不能为空" xml:space="preserve">
     <value>版本號不能為空</value>
+    <comment>版本號不能為空</comment>
   </data>
   <data name="正在下载" xml:space="preserve">
     <value>正在下載: {0}</value>
+    <comment>正在下載: [文件名]</comment>
   </data>
   <data name="从" xml:space="preserve">
     <value>從: {0}</value>
+    <comment>從: [下載鏈接]</comment>
   </data>
   <data name="到" xml:space="preserve">
     <value>到: {0}</value>
+    <comment>到: [保存路徑]</comment>
   </data>
   <data name="下载完成" xml:space="preserve">
     <value>下載完成</value>
+    <comment>下載完成</comment>
   </data>
   <data name="正在安装版本" xml:space="preserve">
     <value>正在安裝版本: {0}</value>
+    <comment>正在安裝版本: [版本號]</comment>
   </data>
   <data name="版本安装成功" xml:space="preserve">
     <value>版本 {0} 安裝成功</value>
+    <comment>版本 [版本號] 安裝成功</comment>
   </data>
   <data name="已将版本设置为当前版本" xml:space="preserve">
     <value>已將版本 {0} 設置為當前版本</value>
+    <comment>已將版本 [版本號] 設置為當前版本</comment>
   </data>
   <data name="版本安装失败" xml:space="preserve">
     <value>版本 {0} 安裝失敗</value>
+    <comment>版本 [版本號] 安裝失敗</comment>
   </data>
   <data name="找不到指定版本" xml:space="preserve">
     <value>找不到指定版本: {0}</value>
+    <comment>找不到指定版本: [版本號]</comment>
   </data>
   <data name="不支持当前系统架构" xml:space="preserve">
     <value>不支持當前系統架構: {0}</value>
+    <comment>不支持當前系統架構: [架構]</comment>
   </data>
   <data name="无效的下载链接" xml:space="preserve">
     <value>無效的下載鏈接: {0}</value>
+    <comment>無效的下載鏈接: [鏈接]</comment>
   </data>
   <data name="找不到Zig可执行文件" xml:space="preserve">
     <value>找不到Zig可執行文件: {0}</value>
+    <comment>找不到Zig可執行文件: [路徑]</comment>
   </data>
   <data name="版本未安装" xml:space="preserve">
     <value>版本 {0} 未安裝</value>
+    <comment>版本 [版本號] 未安裝</comment>
   </data>
   <data name="已成功切换到版本" xml:space="preserve">
     <value>已成功切換到版本 {0}</value>
+    <comment>已成功切換到版本 [版本號]</comment>
   </data>
   <data name="切换到版本失败" xml:space="preserve">
     <value>切換到版本 {0} 失敗，環境變量更新失敗</value>
+    <comment>切換到版本 [版本號] 失敗，環境變量更新失敗</comment>
   </data>
   <data name="版本是当前使用的版本无法卸载" xml:space="preserve">
     <value>版本 {0} 是當前使用的版本，無法卸載</value>
+    <comment>版本 [版本號] 是當前使用的版本，無法卸載</comment>
   </data>
   <data name="版本卸载成功" xml:space="preserve">
     <value>版本 {0} 卸載成功</value>
+    <comment>版本 [版本號] 卸載成功</comment>
   </data>
   <data name="版本卸载失败" xml:space="preserve">
     <value>版本 {0} 卸載失敗</value>
+    <comment>版本 [版本號] 卸載失敗</comment>
   </data>
   <data name="Zigm管理的本地Zig版本" xml:space="preserve">
     <value>Zigm管理的本地Zig版本:</value>
+    <comment>Zigm管理的本地Zig版本:</comment>
   </data>
   <data name="共安装了版本" xml:space="preserve">
     <value>共安裝了 {0} 個版本</value>
+    <comment>共安裝了 [數量] 個版本</comment>
   </data>
   <data name="可选参数系统级" xml:space="preserve">
     <value>可選參數: --system (系統級安裝，需要管理員權限)</value>
+    <comment>可選參數: --system (系統級安裝，需要管理員權限)</comment>
   </data>
   <data name="已将Zig添加到系统PATH中" xml:space="preserve">
     <value>已將Zig {0} {1}添加到系統PATH中</value>
+    <comment>已將Zig [版本] [級別]添加到系統PATH中</comment>
   </data>
   <data name="运行完毕后重启PowerShell实例" xml:space="preserve">
     <value>運行完畢後請重啟你的PowerShell實例。</value>
+    <comment>運行完畢後請重啟你的PowerShell實例。</comment>
   </data>
   <data name="已将Zig添加到PATH中" xml:space="preserve">
     <value>已將Zig {0} 添加到系統PATH中</value>
+    <comment>已將Zig [版本] 添加到系統PATH中</comment>
   </data>
   <data name="完成后请重新加载启动文件或重启Shell" xml:space="preserve">
     <value>完成後，請重新加載你的啟動文件（例如: source ~/.profile 或 source ~/.zshrc）或者重啟Shell。</value>
+    <comment>完成後，請重新加載你的啟動文件（例如: source ~/.profile 或 source ~/.zshrc）或者重啟Shell。</comment>
   </data>
   <data name="修改系统环境变量需要管理员权限" xml:space="preserve">
     <value>修改系統環境變量需要管理員權限，請以管理員身份運行程序。</value>
+    <comment>修改系統環境變量需要管理員權限，請以管理員身份運行程序。</comment>
   </data>
   <data name="修改环境变量失败" xml:space="preserve">
     <value>修改環境變量失敗: {0}</value>
+    <comment>修改環境變量失敗: [錯誤信息]</comment>
   </data>
   <data name="环境变量已刷新" xml:space="preserve">
     <value>環境變量已刷新</value>
+    <comment>環境變量已刷新</comment>
   </data>
   <data name="官方PATH设置建议" xml:space="preserve">
     <value>官方PATH設置建議:</value>
+    <comment>官方PATH設置建議:</comment>
   </data>
   <data name="在Windows上设置PATH" xml:space="preserve">
     <value>在Windows上設置PATH:</value>
+    <comment>在Windows上設置PATH:</comment>
   </data>
   <data name="要在Windows上设置PATH请在PowerShell中运行以下任一代码片段" xml:space="preserve">
     <value>要在Windows上設置PATH，請在PowerShell中運行以下任一代碼片段:</value>
+    <comment>要在Windows上設置PATH，請在PowerShell中運行以下任一代碼片段:</comment>
   </data>
   <data name="系统级安装管理员PowerShell" xml:space="preserve">
     <value>系統級安裝 (管理員 PowerShell):</value>
+    <comment>系統級安裝 (管理員 PowerShell):</comment>
   </data>
   <data name="用户级安装PowerShell" xml:space="preserve">
     <value>用戶級安裝 (PowerShell):</value>
+    <comment>用戶級安裝 (PowerShell):</comment>
   </data>
   <data name="在LinuxMacOSBSD上设置PATH" xml:space="preserve">
     <value>在Linux, MacOS, BSD上設置PATH:</value>
+    <comment>在Linux, MacOS, BSD上設置PATH:</comment>
   </data>
   <data name="将zig二进制镜像的位置添加到PATH环境变量中" xml:space="preserve">
     <value>將zig二進制鏡像的位置添加到PATH環境變量中。</value>
+    <comment>將zig二進制鏡像的位置添加到PATH環境變量中。</comment>
   </data>
   <data name="这通常通过将export行添加到你的shell启动脚本" xml:space="preserve">
     <value>這通常通過將export行添加到你的shell啟動腳本 (.profile, .zshrc, ...)</value>
+    <comment>這通常通過將export行添加到你的shell啟動腳本 (.profile, .zshrc, ...)</comment>
   </data>
   <data name="无效的config命令用法" xml:space="preserve">
     <value>無效的config命令用法</value>
+    <comment>無效的config命令用法</comment>
   </data>
   <data name="用法" xml:space="preserve">
     <value>用法：</value>
+    <comment>用法</comment>
   </data>
   <data name="显示当前配置" xml:space="preserve">
     <value>顯示當前配置</value>
+    <comment>顯示當前配置</comment>
   </data>
   <data name="设置配置项" xml:space="preserve">
     <value>設置配置項</value>
+    <comment>設置配置項</comment>
   </data>
   <data name="重置配置为默认值" xml:space="preserve">
     <value>重置配置為默認值</value>
+    <comment>重置配置為默認值</comment>
   </data>
   <data name="名称" xml:space="preserve">
     <value>Zig 版本管理器</value>
+    <comment>Zig 版本管理器</comment>
   </data>
   <data name="未知选项" xml:space="preserve">
     <value>未知選項</value>
+    <comment>未知選項</comment>
   </data>
   <data name="当前版本" xml:space="preserve">
     <value>當前版本</value>
+    <comment>當前版本</comment>
   </data>
   <data name="加载配置文件失败" xml:space="preserve">
     <value>加載配置文件失敗: {0}</value>
@@ -438,5 +524,185 @@
   <data name="当前版本配置" xml:space="preserve">
     <value>當前版本: {0}</value>
     <comment>當前版本配置顯示: [版本]</comment>
+  </data>
+  <data name="配置文件路径" xml:space="preserve">
+    <value>配置文件路徑</value>
+    <comment>配置文件路徑</comment>
+  </data>
+  <data name="检查更新中" xml:space="preserve">
+    <value>檢查更新中...</value>
+    <comment>檢查更新中...</comment>
+  </data>
+  <data name="发现新版本" xml:space="preserve">
+    <value>發現新版本: {0}</value>
+    <comment>發現新版本: [版本號]</comment>
+  </data>
+  <data name="当前已是最新版本" xml:space="preserve">
+    <value>當前已是最新版本</value>
+    <comment>當前已是最新版本</comment>
+  </data>
+  <data name="未找到兼容的包" xml:space="preserve">
+    <value>未找到兼容的包: {0}</value>
+    <comment>未找到兼容的包: [錯誤信息]</comment>
+  </data>
+  <data name="资产包名称为空" xml:space="preserve">
+    <value>資產包名稱為空</value>
+    <comment>資產包名稱為空</comment>
+  </data>
+  <data name="资产包下载链接为空" xml:space="preserve">
+    <value>資產包下載鏈接為空</value>
+    <comment>資產包下載鏈接為空</comment>
+  </data>
+  <data name="更新完成请重启应用程序" xml:space="preserve">
+    <value>更新完成，請重啟應用程序</value>
+    <comment>更新完成，請重啟應用程序</comment>
+  </data>
+  <data name="更新失败" xml:space="preserve">
+    <value>更新失敗: {0}</value>
+    <comment>更新失敗: [錯誤信息]</comment>
+  </data>
+  <data name="警告无法设置可执行权限" xml:space="preserve">
+    <value>警告: 無法設置可執行權限，請手動執行: chmod +x {0}</value>
+    <comment>警告: 無法設置可執行權限，請手動執行: chmod +x [路徑]</comment>
+  </data>
+  <data name="清理临时文件失败" xml:space="preserve">
+    <value>清理臨時文件失敗: {0}</value>
+    <comment>清理臨時文件失敗: [錯誤信息]</comment>
+  </data>
+  <data name="tarxz文件解压功能将在后续实现" xml:space="preserve">
+    <value>tar.xz文件解壓功能將在後續實現</value>
+    <comment>tar.xz文件解壓功能將在後續實現</comment>
+  </data>
+  <data name="不支持的文件格式" xml:space="preserve">
+    <value>不支援的文件格式: {0}</value>
+    <comment>不支援的文件格式: [格式]</comment>
+  </data>
+  <data name="错误信息" xml:space="preserve">
+    <value>錯誤信息: {0}</value>
+    <comment>錯誤信息: [錯誤信息]</comment>
+  </data>
+  <data name="获取Zig版本信息失败" xml:space="preserve">
+    <value>獲取Zig版本信息失敗: {0}</value>
+    <comment>獲取Zig版本信息失敗: [錯誤信息]</comment>
+  </data>
+  <data name="解析Zig版本JSON失败" xml:space="preserve">
+    <value>解析Zig版本JSON失敗: {0}</value>
+    <comment>解析Zig版本JSON失敗: [錯誤信息]</comment>
+  </data>
+  <data name="获取ZigNightly版本信息失败" xml:space="preserve">
+    <value>獲取Zig nightly版本信息失敗: {0}</value>
+    <comment>獲取Zig nightly版本信息失敗: [錯誤信息]</comment>
+  </data>
+  <data name="解析ZigNightly版本JSON失败" xml:space="preserve">
+    <value>解析Zig nightly版本JSON失敗: {0}</value>
+    <comment>解析Zig nightly版本JSON失敗: [錯誤信息]</comment>
+  </data>
+  <data name="获取指定版本失败" xml:space="preserve">
+    <value>獲取指定版本失敗: {0}</value>
+    <comment>獲取指定版本失敗: [版本號]</comment>
+  </data>
+  <data name="在JSON中查找版本失败" xml:space="preserve">
+    <value>在JSON中查找版本失敗: {0}</value>
+    <comment>在JSON中查找版本失敗: [版本號]</comment>
+  </data>
+  <data name="版本比较失败" xml:space="preserve">
+    <value>版本比較失敗: {0}</value>
+    <comment>版本比較失敗: [錯誤信息]</comment>
+  </data>
+  <data name="错误权限不足" xml:space="preserve">
+    <value>錯誤: 權限不足</value>
+    <comment>錯誤: 權限不足</comment>
+  </data>
+  <data name="修改系统级环境变量需要管理员权限" xml:space="preserve">
+    <value>修改系統級環境變量需要管理員權限。</value>
+    <comment>修改系統級環境變量需要管理員權限。</comment>
+  </data>
+  <data name="解决方案" xml:space="preserve">
+    <value>解決方案:</value>
+    <comment>解決方案:</comment>
+  </data>
+  <data name="以管理员身份运行提示" xml:space="preserve">
+    <value>1. 右鍵點擊命令提示符或PowerShell，選擇'以管理員身份運行'</value>
+    <comment>1. 右鍵點擊命令提示符或PowerShell，選擇'以管理員身份運行'</comment>
+  </data>
+  <data name="重新运行此命令" xml:space="preserve">
+    <value>2. 重新運行此命令</value>
+    <comment>2. 重新運行此命令</comment>
+  </data>
+  <data name="或者" xml:space="preserve">
+    <value>或者:</value>
+    <comment>或者:</comment>
+  </data>
+  <data name="使用用户级安装提示" xml:space="preserve">
+    <value>1. 使用用戶級安裝（不加 --global 參數）</value>
+    <comment>1. 使用用戶級安裝（不加 --global 參數）</comment>
+  </data>
+  <data name="用户级安装说明" xml:space="preserve">
+    <value>2. 這將只修改當前用戶的環境變量</value>
+    <comment>2. 這將只修改當前用戶的環境變量</comment>
+  </data>
+  <data name="下载进度" xml:space="preserve">
+    <value>下載進度: {0:F2}% ({1:N0}/{2:N0} 字節)</value>
+    <comment>下載進度: [百分比] ([已下載]/[總共] 字節)</comment>
+  </data>
+  <data name="下载Zig版本失败" xml:space="preserve">
+    <value>下載Zig版本失敗: {0}</value>
+    <comment>下載Zig版本失敗: [錯誤信息]</comment>
+  </data>
+  <data name="版本已安装" xml:space="preserve">
+    <value>版本 {0} {1}</value>
+    <comment>版本 [版本號] [狀態]</comment>
+  </data>
+  <data name="系统级" xml:space="preserve">
+    <value>系統級</value>
+    <comment>系統級 (環境變量目標)</comment>
+  </data>
+  <data name="用户级" xml:space="preserve">
+    <value>用戶級</value>
+    <comment>用戶級 (環境變量目標)</comment>
+  </data>
+  <data name="安装指定版本的Zig" xml:space="preserve">
+    <value>安裝指定版本的Zig</value>
+    <comment>安裝指定版本的Zig</comment>
+  </data>
+  <data name="切换到指定版本的Zig" xml:space="preserve">
+    <value>切換到指定版本的Zig</value>
+    <comment>切換到指定版本的Zig</comment>
+  </data>
+  <data name="卸载指定版本的Zig" xml:space="preserve">
+    <value>卸載指定版本的Zig</value>
+    <comment>卸載指定版本的Zig</comment>
+  </data>
+  <data name="管理Zigm配置" xml:space="preserve">
+    <value>管理Zigm配置</value>
+    <comment>管理Zigm配置</comment>
+  </data>
+  <data name="显示帮助信息" xml:space="preserve">
+    <value>顯示幫助信息</value>
+    <comment>顯示幫助信息</comment>
+  </data>
+  <data name="未知命令" xml:space="preserve">
+    <value>未知命令: {0}</value>
+    <comment>未知命令: [命令]</comment>
+  </data>
+  <data name="Zig版本管理工具" xml:space="preserve">
+    <value> - Zig版本管理工具</value>
+    <comment>Zig版本管理工具 (後綴)</comment>
+  </data>
+  <data name="使用方法" xml:space="preserve">
+    <value>使用方法: zigm [命令] [參數]</value>
+    <comment>使用方法: zigm [命令] [參數]</comment>
+  </data>
+  <data name="支持的命令" xml:space="preserve">
+    <value>支援的命令:</value>
+    <comment>支援的命令:</comment>
+  </data>
+  <data name="示例" xml:space="preserve">
+    <value>示例:</value>
+    <comment>示例:</comment>
+  </data>
+  <data name="更多信息请访问项目仓库" xml:space="preserve">
+    <value>更多資訊請訪問項目倉庫。</value>
+    <comment>更多資訊請訪問項目倉庫。</comment>
   </data>
 </root>

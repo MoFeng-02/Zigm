@@ -1,20 +1,21 @@
 namespace Zigm.Interactive;
 
 using Zigm.Services;
+using Zigm.Services.Interfaces;
 using Zigm.Languages;
 
-/// <summary>
+/// &lt;summary&gt;
 /// 交互式菜单类，负责处理交互式界面的菜单显示和用户输入
-/// </summary>
+/// &lt;/summary&gt;
 public class InteractiveMenu
 {
-    private readonly ZigVersionService _zigVersionService;
-    private readonly LocalStorageService _localStorageService;
-    private readonly ZigInstallerService _zigInstallerService;
+    private readonly IZigVersionService _zigVersionService;
+    private readonly ILocalStorageService _localStorageService;
+    private readonly IZigInstallerService _zigInstallerService;
 
-    /// <summary>
+    /// &lt;summary&gt;
     /// 菜单选项枚举
-    /// </summary>
+    /// &lt;/summary&gt;
     private enum MenuOption
     {
         ListAvailableVersions = 1,
@@ -25,13 +26,13 @@ public class InteractiveMenu
         Exit
     }
 
-    /// <summary>
+    /// &lt;summary&gt;
     /// 构造函数
-    /// </summary>
-    /// <param name="zigVersionService">Zig版本服务</param>
-    /// <param name="localStorageService">本地存储服务</param>
-    /// <param name="zigInstallerService">Zig安装服务</param>
-    public InteractiveMenu(ZigVersionService zigVersionService, LocalStorageService localStorageService, ZigInstallerService zigInstallerService)
+    /// &lt;/summary&gt;
+    /// &lt;param name="zigVersionService"&gt;Zig版本服务&lt;/param&gt;
+    /// &lt;param name="localStorageService"&gt;本地存储服务&lt;/param&gt;
+    /// &lt;param name="zigInstallerService"&gt;Zig安装服务&lt;/param&gt;
+    public InteractiveMenu(IZigVersionService zigVersionService, ILocalStorageService localStorageService, IZigInstallerService zigInstallerService)
     {
         _zigVersionService = zigVersionService;
         _localStorageService = localStorageService;

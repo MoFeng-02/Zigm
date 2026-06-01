@@ -525,4 +525,184 @@
     <value>当前版本: {0}</value>
     <comment>当前版本配置显示: [版本]</comment>
   </data>
+  <data name="配置文件路径" xml:space="preserve">
+    <value>配置文件路径</value>
+    <comment>配置文件路径</comment>
+  </data>
+  <data name="检查更新中" xml:space="preserve">
+    <value>检查更新中...</value>
+    <comment>检查更新中...</comment>
+  </data>
+  <data name="发现新版本" xml:space="preserve">
+    <value>发现新版本: {0}</value>
+    <comment>发现新版本: [版本号]</comment>
+  </data>
+  <data name="当前已是最新版本" xml:space="preserve">
+    <value>当前已是最新版本</value>
+    <comment>当前已是最新版本</comment>
+  </data>
+  <data name="未找到兼容的包" xml:space="preserve">
+    <value>未找到兼容的包: {0}</value>
+    <comment>未找到兼容的包: [运行时ID]</comment>
+  </data>
+  <data name="资产包名称为空" xml:space="preserve">
+    <value>资产包名称为空</value>
+    <comment>资产包名称为空</comment>
+  </data>
+  <data name="资产包下载链接为空" xml:space="preserve">
+    <value>资产包下载链接为空</value>
+    <comment>资产包下载链接为空</comment>
+  </data>
+  <data name="更新完成请重启应用程序" xml:space="preserve">
+    <value>更新完成，请重启应用程序</value>
+    <comment>更新完成，请重启应用程序</comment>
+  </data>
+  <data name="更新失败" xml:space="preserve">
+    <value>更新失败: {0}</value>
+    <comment>更新失败: [错误信息]</comment>
+  </data>
+  <data name="警告无法设置可执行权限" xml:space="preserve">
+    <value>警告: 无法设置可执行权限，请手动执行: chmod +x {0}</value>
+    <comment>警告: 无法设置可执行权限，请手动执行: chmod +x [路径]</comment>
+  </data>
+  <data name="清理临时文件失败" xml:space="preserve">
+    <value>清理临时文件失败: {0}</value>
+    <comment>清理临时文件失败: [错误信息]</comment>
+  </data>
+  <data name="tarxz文件解压功能将在后续实现" xml:space="preserve">
+    <value>tar.xz文件解压功能将在后续实现</value>
+    <comment>tar.xz文件解压功能将在后续实现</comment>
+  </data>
+  <data name="不支持的文件格式" xml:space="preserve">
+    <value>不支持的文件格式: {0}</value>
+    <comment>不支持的文件格式: [扩展名]</comment>
+  </data>
+  <data name="错误信息" xml:space="preserve">
+    <value>错误信息: {0}</value>
+    <comment>错误信息: [错误详情]</comment>
+  </data>
+  <data name="获取Zig版本信息失败" xml:space="preserve">
+    <value>获取Zig版本信息失败: {0}</value>
+    <comment>获取Zig版本信息失败: [错误信息]</comment>
+  </data>
+  <data name="解析Zig版本JSON失败" xml:space="preserve">
+    <value>解析Zig版本JSON失败: {0}</value>
+    <comment>解析Zig版本JSON失败: [错误信息]</comment>
+  </data>
+  <data name="获取ZigNightly版本信息失败" xml:space="preserve">
+    <value>获取Zig nightly版本信息失败: {0}</value>
+    <comment>获取Zig nightly版本信息失败: [错误信息]</comment>
+  </data>
+  <data name="解析ZigNightly版本JSON失败" xml:space="preserve">
+    <value>解析Zig nightly版本JSON失败: {0}</value>
+    <comment>解析Zig nightly版本JSON失败: [错误信息]</comment>
+  </data>
+  <data name="获取指定版本失败" xml:space="preserve">
+    <value>获取指定版本失败: {0}</value>
+    <comment>获取指定版本失败: [错误信息]</comment>
+  </data>
+  <data name="在JSON中查找版本失败" xml:space="preserve">
+    <value>在JSON中查找版本失败: {0}</value>
+    <comment>在JSON中查找版本失败: [错误信息]</comment>
+  </data>
+  <data name="版本比较失败" xml:space="preserve">
+    <value>版本比较失败: {0}</value>
+    <comment>版本比较失败: [错误信息]</comment>
+  </data>
+  <data name="错误权限不足" xml:space="preserve">
+    <value>错误: 权限不足</value>
+    <comment>错误: 权限不足</comment>
+  </data>
+  <data name="修改系统级环境变量需要管理员权限" xml:space="preserve">
+    <value>修改系统级环境变量需要管理员权限。</value>
+    <comment>修改系统级环境变量需要管理员权限。</comment>
+  </data>
+  <data name="解决方案" xml:space="preserve">
+    <value>解决方案:</value>
+    <comment>解决方案:</comment>
+  </data>
+  <data name="以管理员身份运行提示" xml:space="preserve">
+    <value>1. 右键点击命令提示符或PowerShell，选择'以管理员身份运行'</value>
+    <comment>以管理员身份运行提示</comment>
+  </data>
+  <data name="重新运行此命令" xml:space="preserve">
+    <value>2. 重新运行此命令</value>
+    <comment>重新运行此命令</comment>
+  </data>
+  <data name="或者" xml:space="preserve">
+    <value>或者:</value>
+    <comment>或者:</comment>
+  </data>
+  <data name="使用用户级安装提示" xml:space="preserve">
+    <value>1. 使用用户级安装（不加 --global 参数）</value>
+    <comment>使用用户级安装提示</comment>
+  </data>
+  <data name="用户级安装说明" xml:space="preserve">
+    <value>2. 这将只修改当前用户的环境变量</value>
+    <comment>用户级安装说明</comment>
+  </data>
+  <data name="下载进度" xml:space="preserve">
+    <value>下载进度: {0:F2}% ({1:N0}/{2:N0} 字节)</value>
+    <comment>下载进度: [百分比] ([已下载]/[总计] 字节)</comment>
+  </data>
+  <data name="下载Zig版本失败" xml:space="preserve">
+    <value>下载Zig版本失败: {0}</value>
+    <comment>下载Zig版本失败: [错误信息]</comment>
+  </data>
+  <data name="版本已安装" xml:space="preserve">
+    <value>版本 {0} {1}</value>
+    <comment>版本 [版本号] [已安装/未安装状态]</comment>
+  </data>
+  <data name="系统级" xml:space="preserve">
+    <value>系统级</value>
+    <comment>System-level (environment variable target)</comment>
+  </data>
+  <data name="用户级" xml:space="preserve">
+    <value>用户级</value>
+    <comment>User-level (environment variable target)</comment>
+  </data>
+  <data name="安装指定版本的Zig" xml:space="preserve">
+    <value>安装指定版本的Zig</value>
+    <comment>Install specified version of Zig</comment>
+  </data>
+  <data name="切换到指定版本的Zig" xml:space="preserve">
+    <value>切换到指定版本的Zig</value>
+    <comment>Switch to specified version of Zig</comment>
+  </data>
+  <data name="卸载指定版本的Zig" xml:space="preserve">
+    <value>卸载指定版本的Zig</value>
+    <comment>Uninstall specified version of Zig</comment>
+  </data>
+  <data name="管理Zigm配置" xml:space="preserve">
+    <value>管理Zigm配置</value>
+    <comment>Manage Zigm configuration</comment>
+  </data>
+  <data name="显示帮助信息" xml:space="preserve">
+    <value>显示帮助信息</value>
+    <comment>Show help information</comment>
+  </data>
+  <data name="未知命令" xml:space="preserve">
+    <value>未知命令: {0}</value>
+    <comment>Unknown command: [command]</comment>
+  </data>
+  <data name="Zig版本管理工具" xml:space="preserve">
+    <value> - Zig版本管理工具</value>
+    <comment>Zig Version Manager Tool (suffix)</comment>
+  </data>
+  <data name="使用方法" xml:space="preserve">
+    <value>使用方法: zigm [命令] [参数]</value>
+    <comment>Usage: zigm [command] [parameters]</comment>
+  </data>
+  <data name="支持的命令" xml:space="preserve">
+    <value>支持的命令:</value>
+    <comment>Supported commands:</comment>
+  </data>
+  <data name="示例" xml:space="preserve">
+    <value>示例:</value>
+    <comment>Examples:</comment>
+  </data>
+  <data name="更多信息请访问项目仓库" xml:space="preserve">
+    <value>更多信息请访问项目仓库。</value>
+    <comment>For more information, please visit the project repository.</comment>
+  </data>
 </root>

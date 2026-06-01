@@ -1,17 +1,19 @@
 using System.IO.Compression;
 using Zigm.Models;
 using Zigm.Languages;
+using Zigm.Services.Interfaces;
 
 namespace Zigm.Services;
 
 /// <summary>
 /// 本地存储服务类，负责管理Zig版本的存储路径和文件操作
 /// </summary>
-public class LocalStorageService
+public class LocalStorageService : ILocalStorageService
 {
     private readonly string _basePath;
     private readonly string _currentVersionPath;
     private readonly string _versionsPath;
+    private readonly string _binPath;
 
     /// <summary>
     /// 构造函数
@@ -23,10 +25,12 @@ public class LocalStorageService
         _basePath = config.StoragePath ?? GetDefaultBasePath();
         _versionsPath = Path.Combine(_basePath, "versions");
         _currentVersionPath = Path.Combine(_basePath, "current");
+        _binPath = Path.Combine(_basePath, "bin");
 
         // 确保目录存在
         Directory.CreateDirectory(_basePath);
         Directory.CreateDirectory(_versionsPath);
+        Directory.CreateDirectory(_binPath);
     }
 
     /// <summary>
@@ -67,6 +71,15 @@ public class LocalStorageService
     public string GetCurrentVersionPath()
     {
         return _currentVersionPath;
+    }
+
+    /// <summary>
+    /// 获取 Zigm 的 bin 目录路径（用于符号链接）
+    /// </summary>
+    /// <returns>bin 目录路径</returns>
+    public string GetBinPath()
+    {
+        return _binPath;
     }
 
     /// <summary>
@@ -112,12 +125,35 @@ public class LocalStorageService
     }
 
     /// <summary>
+    /// 异步获取当前使用的版本
+    /// </summary>
+    /// <returns>当前版本号，如果没有设置则返回null</returns>
+    public async Task<string?> GetCurrentVersionAsync()
+    {
+        if (File.Exists(_currentVersionPath))
+        {
+            var content = await File.ReadAllTextAsync(_currentVersionPath);
+            return content.Trim();
+        }
+        return null;
+    }
+
+    /// <summary>
     /// 设置当前使用的版本
     /// </summary>
     /// <param name="version">版本号</param>
     public void SetCurrentVersion(string version)
     {
         File.WriteAllText(_currentVersionPath, version);
+    }
+
+    /// <summary>
+    /// 异步设置当前使用的版本
+    /// </summary>
+    /// <param name="version">版本号</param>
+    public Task SetCurrentVersionAsync(string version)
+    {
+        return File.WriteAllTextAsync(_currentVersionPath, version);
     }
 
     /// <summary>
@@ -152,12 +188,12 @@ public class LocalStorageService
             else if (extension == ".xz" || extension == ".tar.xz")
             {
                 // 这里需要处理tar.xz文件，暂时使用占位符
-                Console.WriteLine("tar.xz文件解压功能将在后续实现");
+                Console.WriteLine(AppLang.tarxz文件解压功能将在后续实现);
                 return false;
             }
             else
             {
-                Console.WriteLine($"不支持的文件格式: {extension}");
+                Console.WriteLine(string.Format(AppLang.不支持的文件格式, extension));
                 return false;
             }
 
@@ -166,7 +202,7 @@ public class LocalStorageService
         catch (Exception ex)
         {
             Console.WriteLine(string.Format(AppLang.版本安装失败, version));
-            Console.WriteLine($"错误信息: {ex.Message}");
+            Console.WriteLine(string.Format(AppLang.错误信息, ex.Message));
             return false;
         }
     }
@@ -202,6 +238,17 @@ public class LocalStorageService
     }
 
     /// <summary>
+    /// 异步安装Zig版本（解压下载的文件）
+    /// </summary>
+    /// <param name="version">版本号</param>
+    /// <param name="downloadPath">下载文件的路径</param>
+    /// <returns>安装是否成功</returns>
+    public async Task<bool> InstallVersionAsync(string version, string downloadPath)
+    {
+        return await Task.Run(() => InstallVersion(version, downloadPath));
+    }
+
+    /// <summary>
     /// 卸载指定版本
     /// </summary>
     /// <param name="version">版本号</param>
@@ -222,9 +269,19 @@ public class LocalStorageService
         catch (Exception ex)
         {
             Console.WriteLine(string.Format(AppLang.版本卸载失败, version));
-            Console.WriteLine($"错误信息: {ex.Message}");
+            Console.WriteLine(string.Format(AppLang.错误信息, ex.Message));
             return false;
         }
+    }
+
+    /// <summary>
+    /// 异步卸载指定版本
+    /// </summary>
+    /// <param name="version">版本号</param>
+    /// <returns>卸载是否成功</returns>
+    public async Task<bool> UninstallVersionAsync(string version)
+    {
+        return await Task.Run(() => UninstallVersion(version));
     }
 
     /// <summary>
@@ -241,8 +298,17 @@ public class LocalStorageService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"清理临时文件失败: {ex.Message}");
+                Console.WriteLine(string.Format(AppLang.清理临时文件失败, ex.Message));
             }
         }
+    }
+
+    /// <summary>
+    /// 异步清理临时文件
+    /// </summary>
+    /// <param name="filePath">要清理的文件路径</param>
+    public async Task CleanupTempFileAsync(string filePath)
+    {
+        await Task.Run(() => CleanupTempFile(filePath));
     }
 }

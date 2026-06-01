@@ -1,45 +1,43 @@
 using Zigm.Helpers;
 using Zigm.Models;
 using Zigm.Languages;
+using Zigm.Services.Interfaces;
 
 namespace Zigm.Services;
 
-/// <summary>
-/// Zig安装服务类，负责下载和安装Zig版本
-/// </summary>
-public class ZigInstallerService
+public class ZigInstallerService : IZigInstallerService
 {
-    private readonly HttpClient _httpClient;
-    private readonly LocalStorageService _localStorageService;
-    private readonly ZigVersionService _zigVersionService;
-    private readonly EnvironmentService _environmentService;
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly ILocalStorageService _localStorageService;
+    private readonly IZigVersionService _zigVersionService;
+    private readonly IEnvironmentService _environmentService;
     private readonly Config _config;
 
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    /// <param name="localStorageService">本地存储服务</param>
-    /// <param name="zigVersionService">Zig版本服务</param>
-    public ZigInstallerService(LocalStorageService localStorageService, ZigVersionService zigVersionService, Config config)
+    public ZigInstallerService(
+        ILocalStorageService localStorageService, 
+        IZigVersionService zigVersionService, 
+        IEnvironmentService environmentService,
+        Config config,
+        IHttpClientFactory httpClientFactory)
     {
-        _httpClient = new HttpClient();
-        _httpClient.Timeout = TimeSpan.FromMinutes(10); // 下载大文件需要更长时间
+        _httpClientFactory = httpClientFactory;
         _localStorageService = localStorageService;
         _zigVersionService = zigVersionService;
-        _environmentService = new EnvironmentService(localStorageService);
+        _environmentService = environmentService;
         _config = config;
     }
 
-    /// <summary>
-    /// 下载Zig版本
-    /// </summary>
-    /// <param name="version">版本号</param>
-    /// <returns>下载文件的路径，如果下载失败则返回null</returns>
+    private HttpClient CreateHttpClient()
+    {
+        var client = _httpClientFactory.CreateClient();
+        client.Timeout = TimeSpan.FromMinutes(10);
+        return client;
+    }
+
     private async Task<string?> DownloadVersionAsync(string version)
     {
         try
         {
-            // 获取版本信息
             var zigVersion = await _zigVersionService.GetVersionAsync(version);
             if (zigVersion == null)
             {
@@ -47,7 +45,6 @@ public class ZigInstallerService
                 return null;
             }
 
-            // 获取当前系统架构
             var architecture = SystemHelper.GetSystemArchitecture();
             if (!zigVersion.DownloadUrls.ContainsKey(architecture))
             {
@@ -68,8 +65,8 @@ public class ZigInstallerService
             Console.WriteLine(string.Format(AppLang.从, downloadUrl));
             Console.WriteLine(string.Format(AppLang.到, tempPath));
 
-            // 下载文件
-            using (var response = await _httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead))
+            using var httpClient = CreateHttpClient();
+            using (var response = await httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead))
             {
                 response.EnsureSuccessStatusCode();
 
@@ -86,11 +83,10 @@ public class ZigInstallerService
                     await fileStream.WriteAsync(buffer, 0, bytesRead);
                     downloadedBytes += bytesRead;
 
-                    // 显示下载进度
                     if (totalBytes > 0)
                     {
                         var progress = (double)downloadedBytes / totalBytes * 100;
-                        Console.Write($"\r下载进度: {progress:F2}% ({downloadedBytes:N0}/{totalBytes:N0} 字节)");
+                        Console.Write($"\r{string.Format(AppLang.下载进度, progress, downloadedBytes, totalBytes)}");
                     }
                 }
             }
@@ -101,26 +97,19 @@ public class ZigInstallerService
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"下载Zig版本失败: {ex.Message}");
+            Console.WriteLine(string.Format(AppLang.下载Zig版本失败, ex.Message));
             return null;
         }
     }
 
-    /// <summary>
-    /// 安装指定版本的Zig
-    /// </summary>
-    /// <param name="version">版本号</param>
-    /// <returns>安装是否成功</returns>
     public async Task<bool> InstallAsync(string version)
     {
-        // 检查版本是否已安装
-            if (_localStorageService.IsVersionInstalled(version))
-            {
-                Console.WriteLine($"版本 {version} {AppLang.已安装是}");
-                return true;
-            }
+        if (_localStorageService.IsVersionInstalled(version))
+        {
+            Console.WriteLine(string.Format(AppLang.版本已安装, version, AppLang.已安装是));
+            return true;
+        }
 
-        // 下载版本
         var downloadPath = await DownloadVersionAsync(version);
         if (string.IsNullOrEmpty(downloadPath))
         {
@@ -129,7 +118,6 @@ public class ZigInstallerService
 
         try
         {
-            // 安装版本
             Console.WriteLine(string.Format(AppLang.正在安装版本, version));
             var success = _localStorageService.InstallVersion(version, downloadPath);
 
@@ -137,7 +125,6 @@ public class ZigInstallerService
             {
                 Console.WriteLine(string.Format(AppLang.版本安装成功, version));
 
-                // 如果是第一次安装，自动设置为当前版本
                 if (string.IsNullOrEmpty(_localStorageService.GetCurrentVersion()))
                 {
                     _localStorageService.SetCurrentVersion(version);
@@ -153,26 +140,18 @@ public class ZigInstallerService
         }
         finally
         {
-            // 清理临时文件
             _localStorageService.CleanupTempFile(downloadPath);
         }
     }
 
-    /// <summary>
-    /// 卸载指定版本的Zig
-    /// </summary>
-    /// <param name="version">版本号</param>
-    /// <returns>卸载是否成功</returns>
     public bool Uninstall(string version)
     {
-        // 检查版本是否已安装
         if (!_localStorageService.IsVersionInstalled(version))
         {
             Console.WriteLine(string.Format(AppLang.版本未安装, version));
             return false;
         }
 
-        // 检查是否是当前使用的版本
         var currentVersion = _localStorageService.GetCurrentVersion();
         if (currentVersion == version)
         {
@@ -180,7 +159,6 @@ public class ZigInstallerService
             return false;
         }
 
-        // 卸载版本
         var success = _localStorageService.UninstallVersion(version);
         if (success)
         {
@@ -194,25 +172,16 @@ public class ZigInstallerService
         return success;
     }
 
-    /// <summary>
-    /// 切换到指定版本的Zig
-    /// </summary>
-    /// <param name="version">版本号</param>
-    /// <param name="target">环境变量目标（用户或系统）</param>
-    /// <returns>切换是否成功</returns>
     public bool SwitchToVersion(string version, EnvironmentVariableTarget target = EnvironmentVariableTarget.User)
     {
-        // 检查版本是否已安装
         if (!_localStorageService.IsVersionInstalled(version))
         {
             Console.WriteLine(string.Format(AppLang.版本未安装, version));
             return false;
         }
 
-        // 设置当前版本
         _localStorageService.SetCurrentVersion(version);
 
-        // 更新系统环境变量
         if (_environmentService.AddZigToPath(version, target))
         {
             Console.WriteLine(string.Format(AppLang.已成功切换到版本, version));

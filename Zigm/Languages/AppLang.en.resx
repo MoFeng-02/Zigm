@@ -525,4 +525,184 @@
     <value>Current Version: {0}</value>
     <comment>Current Version configuration display: [version]</comment>
   </data>
+  <data name="配置文件路径" xml:space="preserve">
+    <value>Configuration File Path</value>
+    <comment>Configuration File Path</comment>
+  </data>
+  <data name="检查更新中" xml:space="preserve">
+    <value>Checking for updates...</value>
+    <comment>Checking for updates...</comment>
+  </data>
+  <data name="发现新版本" xml:space="preserve">
+    <value>New version found: {0}</value>
+    <comment>New version found: [version]</comment>
+  </data>
+  <data name="当前已是最新版本" xml:space="preserve">
+    <value>You already have the latest version</value>
+    <comment>You already have the latest version</comment>
+  </data>
+  <data name="未找到兼容的包" xml:space="preserve">
+    <value>No compatible package found: {0}</value>
+    <comment>No compatible package found: [reason]</comment>
+  </data>
+  <data name="资产包名称为空" xml:space="preserve">
+    <value>Asset package name is empty</value>
+    <comment>Asset package name is empty</comment>
+  </data>
+  <data name="资产包下载链接为空" xml:space="preserve">
+    <value>Asset download URL is empty</value>
+    <comment>Asset download URL is empty</comment>
+  </data>
+  <data name="更新完成请重启应用程序" xml:space="preserve">
+    <value>Update completed, please restart the application</value>
+    <comment>Update completed, please restart the application</comment>
+  </data>
+  <data name="更新失败" xml:space="preserve">
+    <value>Update failed: {0}</value>
+    <comment>Update failed: [error message]</comment>
+  </data>
+  <data name="警告无法设置可执行权限" xml:space="preserve">
+    <value>Warning: Unable to set executable permission, please manually run: chmod +x {0}</value>
+    <comment>Warning: Unable to set executable permission, please manually run: chmod +x [file path]</comment>
+  </data>
+  <data name="清理临时文件失败" xml:space="preserve">
+    <value>Failed to clean up temporary file: {0}</value>
+    <comment>Failed to clean up temporary file: [error message]</comment>
+  </data>
+  <data name="tarxz文件解压功能将在后续实现" xml:space="preserve">
+    <value>tar.xz file extraction will be implemented in future</value>
+    <comment>tar.xz file extraction will be implemented in future</comment>
+  </data>
+  <data name="不支持的文件格式" xml:space="preserve">
+    <value>Unsupported file format: {0}</value>
+    <comment>Unsupported file format: [format]</comment>
+  </data>
+  <data name="错误信息" xml:space="preserve">
+    <value>Error message: {0}</value>
+    <comment>Error message: [message]</comment>
+  </data>
+  <data name="获取Zig版本信息失败" xml:space="preserve">
+    <value>Failed to get Zig version information: {0}</value>
+    <comment>Failed to get Zig version information: [error message]</comment>
+  </data>
+  <data name="解析Zig版本JSON失败" xml:space="preserve">
+    <value>Failed to parse Zig version JSON: {0}</value>
+    <comment>Failed to parse Zig version JSON: [error message]</comment>
+  </data>
+  <data name="获取ZigNightly版本信息失败" xml:space="preserve">
+    <value>Failed to get Zig nightly version information: {0}</value>
+    <comment>Failed to get Zig nightly version information: [error message]</comment>
+  </data>
+  <data name="解析ZigNightly版本JSON失败" xml:space="preserve">
+    <value>Failed to parse Zig nightly version JSON: {0}</value>
+    <comment>Failed to parse Zig nightly version JSON: [error message]</comment>
+  </data>
+  <data name="获取指定版本失败" xml:space="preserve">
+    <value>Failed to get specified version: {0}</value>
+    <comment>Failed to get specified version: [error message]</comment>
+  </data>
+  <data name="在JSON中查找版本失败" xml:space="preserve">
+    <value>Failed to find version in JSON: {0}</value>
+    <comment>Failed to find version in JSON: [error message]</comment>
+  </data>
+  <data name="版本比较失败" xml:space="preserve">
+    <value>Version comparison failed: {0}</value>
+    <comment>Version comparison failed: [error message]</comment>
+  </data>
+  <data name="错误权限不足" xml:space="preserve">
+    <value>Error: Insufficient permissions</value>
+    <comment>Error: Insufficient permissions</comment>
+  </data>
+  <data name="修改系统级环境变量需要管理员权限" xml:space="preserve">
+    <value>System-level environment variable modification requires administrator privileges.</value>
+    <comment>System-level environment variable modification requires administrator privileges.</comment>
+  </data>
+  <data name="解决方案" xml:space="preserve">
+    <value>Solutions:</value>
+    <comment>Solutions:</comment>
+  </data>
+  <data name="以管理员身份运行提示" xml:space="preserve">
+    <value>1. Right-click Command Prompt or PowerShell and select 'Run as administrator'</value>
+    <comment>1. Right-click Command Prompt or PowerShell and select 'Run as administrator'</comment>
+  </data>
+  <data name="重新运行此命令" xml:space="preserve">
+    <value>2. Run this command again</value>
+    <comment>2. Run this command again</comment>
+  </data>
+  <data name="或者" xml:space="preserve">
+    <value>Or:</value>
+    <comment>Or:</comment>
+  </data>
+  <data name="使用用户级安装提示" xml:space="preserve">
+    <value>1. Use user-level installation (without --global parameter)</value>
+    <comment>1. Use user-level installation (without --global parameter)</comment>
+  </data>
+  <data name="用户级安装说明" xml:space="preserve">
+    <value>2. This will only modify the current user's environment variables</value>
+    <comment>2. This will only modify the current user's environment variables</comment>
+  </data>
+  <data name="下载进度" xml:space="preserve">
+    <value>Download progress: {0:F2}% ({1:N0}/{2:N0} bytes)</value>
+    <comment>Download progress: [percentage] ([downloaded]/[total] bytes)</comment>
+  </data>
+  <data name="下载Zig版本失败" xml:space="preserve">
+    <value>Failed to download Zig version: {0}</value>
+    <comment>Failed to download Zig version: [error message]</comment>
+  </data>
+  <data name="版本已安装" xml:space="preserve">
+    <value>Version {0} {1}</value>
+    <comment>Version [version] [additional info]</comment>
+  </data>
+  <data name="系统级" xml:space="preserve">
+    <value>System-level</value>
+    <comment>System-level (environment variable target)</comment>
+  </data>
+  <data name="用户级" xml:space="preserve">
+    <value>User-level</value>
+    <comment>User-level (environment variable target)</comment>
+  </data>
+  <data name="安装指定版本的Zig" xml:space="preserve">
+    <value>Install specified version of Zig</value>
+    <comment>Install specified version of Zig</comment>
+  </data>
+  <data name="切换到指定版本的Zig" xml:space="preserve">
+    <value>Switch to specified version of Zig</value>
+    <comment>Switch to specified version of Zig</comment>
+  </data>
+  <data name="卸载指定版本的Zig" xml:space="preserve">
+    <value>Uninstall specified version of Zig</value>
+    <comment>Uninstall specified version of Zig</comment>
+  </data>
+  <data name="管理Zigm配置" xml:space="preserve">
+    <value>Manage Zigm configuration</value>
+    <comment>Manage Zigm configuration</comment>
+  </data>
+  <data name="显示帮助信息" xml:space="preserve">
+    <value>Show help information</value>
+    <comment>Show help information</comment>
+  </data>
+  <data name="未知命令" xml:space="preserve">
+    <value>Unknown command: {0}</value>
+    <comment>Unknown command: [command]</comment>
+  </data>
+  <data name="Zig版本管理工具" xml:space="preserve">
+    <value> - Zig Version Manager Tool</value>
+    <comment>Zig Version Manager Tool (suffix)</comment>
+  </data>
+  <data name="使用方法" xml:space="preserve">
+    <value>Usage: zigm [command] [parameters]</value>
+    <comment>Usage: zigm [command] [parameters]</comment>
+  </data>
+  <data name="支持的命令" xml:space="preserve">
+    <value>Supported commands:</value>
+    <comment>Supported commands:</comment>
+  </data>
+  <data name="示例" xml:space="preserve">
+    <value>Examples:</value>
+    <comment>Examples:</comment>
+  </data>
+  <data name="更多信息请访问项目仓库" xml:space="preserve">
+    <value>For more information, please visit the project repository.</value>
+    <comment>For more information, please visit the project repository.</comment>
+  </data>
 </root>

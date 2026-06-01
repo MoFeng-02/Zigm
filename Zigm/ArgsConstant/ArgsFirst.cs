@@ -15,13 +15,13 @@ public class ArgsFirst
         { "start", AppLang.启动交互式界面 },
         { "list", AppLang.列出可用版本 },
         { "ls", AppLang.列出本地版本 },
-        { "install", "安装指定版本的Zig" },
-        { "use", "切换到指定版本的Zig" },
-        { "uninstall", "卸载指定版本的Zig" },
+        { "install", AppLang.安装指定版本的Zig },
+        { "use", AppLang.切换到指定版本的Zig },
+        { "uninstall", AppLang.卸载指定版本的Zig },
         { "current", AppLang.显示当前版本 },
         { "update", AppLang.更新到最新版本 },
-        { "config", "管理Zigm配置" },
-        { "help", "显示帮助信息" }
+        { "config", AppLang.管理Zigm配置 },
+        { "help", AppLang.显示帮助信息 }
     };
 
     /// <summary>
@@ -42,7 +42,7 @@ public class ArgsFirst
         // 验证命令是否支持
         if (!SupportedCommands.ContainsKey(command))
         {
-            Console.WriteLine($"未知命令: {command}");
+            Console.WriteLine(string.Format(AppLang.未知命令, command));
             return ("help", new List<string>());
         }
 
@@ -54,14 +54,13 @@ public class ArgsFirst
     /// </summary>
     public static void ShowHelp()
     {
-        Console.WriteLine($"{AppLang.应用名称} - Zig版本管理工具");
+        Console.WriteLine($"{AppLang.应用名称}{AppLang.Zig版本管理工具}");
         Console.WriteLine();
-        Console.WriteLine("使用方法: zigm [命令] [参数]");
+        Console.WriteLine(AppLang.使用方法);
         Console.WriteLine();
-        Console.WriteLine("支持的命令:");
+        Console.WriteLine(AppLang.支持的命令);
         Console.WriteLine();
         
-        // 计算最大命令长度，用于对齐
         int maxCommandLength = SupportedCommands.Keys.Max(cmd => cmd.Length);
         
         foreach (var (command, description) in SupportedCommands)
@@ -70,11 +69,11 @@ public class ArgsFirst
         }
         
         Console.WriteLine();
-        Console.WriteLine("示例:");
-        Console.WriteLine("  zigm install 0.12.0    # 安装Zig 0.12.0版本");
-        Console.WriteLine("  zigm use 0.11.0        # 切换到Zig 0.11.0版本");
-        Console.WriteLine("  zigm list              # 列出所有可用的Zig版本");
+        Console.WriteLine(AppLang.示例);
+        Console.WriteLine("  zigm install 0.12.0    # Install Zig 0.12.0");
+        Console.WriteLine("  zigm use 0.11.0        # Switch to Zig 0.11.0");
+        Console.WriteLine("  zigm list              # List all available Zig versions");
         Console.WriteLine();
-        Console.WriteLine("更多信息请访问项目仓库。");
+        Console.WriteLine(AppLang.更多信息请访问项目仓库);
     }
 }

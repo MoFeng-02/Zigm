@@ -1,21 +1,21 @@
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using Zigm.Languages;
+using Zigm.Models;
+using Zigm.Services.Interfaces;
 
 namespace Zigm.Services;
 
 /// <summary>
 /// Zigm更新服务类
 /// </summary>
-public class ZigmUpdaterService
+public class ZigmUpdaterService : IZigmUpdaterService
 {
-    private readonly HttpClient _httpClient;
-    private readonly string _currentVersion = "0.1.0";
-    // 修改这里：使用实际的 GitHub 仓库信息
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly string _currentVersion;
     private const string GitHubApiUrl = "https://api.github.com/repos/MoFeng-02/Zigm/releases/latest";
     private readonly string? _currentExePath;
     private readonly string _currentDir;
@@ -24,8 +24,10 @@ public class ZigmUpdaterService
     /// <summary>
     /// 构造函数
     /// </summary>
-    public ZigmUpdaterService()
+    public ZigmUpdaterService(IHttpClientFactory httpClientFactory)
     {
+        _httpClientFactory = httpClientFactory;
+        _currentVersion = GetCurrentVersion();
         var process = Process.GetCurrentProcess();
         _currentExePath = process.MainModule?.FileName;
 
@@ -44,19 +46,41 @@ public class ZigmUpdaterService
             ?? AppDomain.CurrentDomain.BaseDirectory;
 
         _tempDir = Path.Combine(Path.GetTempPath(), $"ZigmUpdate_{Guid.NewGuid():N}");
+    }
 
-        _httpClient = new HttpClient();
-        _httpClient.Timeout = TimeSpan.FromSeconds(30);
-        _httpClient.DefaultRequestHeaders.UserAgent.Add(
+    private static string GetCurrentVersion()
+    {
+        var assembly = typeof(ZigmUpdaterService).Assembly;
+        using var stream = assembly.GetManifestResourceStream("Zigm.version.json");
+        if (stream == null)
+        {
+            return "1.0.0";
+        }
+        using var reader = new StreamReader(stream);
+        var content = reader.ReadToEnd();
+        using var doc = JsonDocument.Parse(content);
+        if (doc.RootElement.TryGetProperty("version", out var versionElement))
+        {
+            return versionElement.GetString() ?? "1.0.0";
+        }
+        return "1.0.0";
+    }
+
+    private HttpClient CreateHttpClient()
+    {
+        var client = _httpClientFactory.CreateClient();
+        client.Timeout = TimeSpan.FromSeconds(30);
+        client.DefaultRequestHeaders.UserAgent.Add(
             new ProductInfoHeaderValue("ZigmUpdater", _currentVersion));
 
         // 对于私有仓库或避免限流，可以添加 Token
         // var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
         // if (!string.IsNullOrEmpty(token))
         // {
-        //     _httpClient.DefaultRequestHeaders.Authorization = 
+        //     client.DefaultRequestHeaders.Authorization = 
         //         new AuthenticationHeaderValue("Bearer", token);
         // }
+        return client;
     }
 
     /// <summary>
@@ -66,9 +90,10 @@ public class ZigmUpdaterService
     {
         try
         {
-            Console.WriteLine("检查更新中...");
+            Console.WriteLine(AppLang.检查更新中);
 
-            var response = await _httpClient.GetAsync(GitHubApiUrl);
+            using var client = CreateHttpClient();
+            var response = await client.GetAsync(GitHubApiUrl);
             if (!response.IsSuccessStatusCode)
             {
                 return (false, null, $"API请求失败: {response.StatusCode}");
@@ -76,7 +101,7 @@ public class ZigmUpdaterService
 
             var content = await response.Content.ReadAsStringAsync();
             var latestRelease = JsonSerializer.Deserialize(
-                content, GithubContext.Default.GitHubRelease);
+                content, GitHubJsonContext.Default.GitHubRelease);
 
             if (latestRelease == null || string.IsNullOrEmpty(latestRelease.TagName))
             {
@@ -89,11 +114,11 @@ public class ZigmUpdaterService
 
             if (latestVersionObj > currentVersionObj)
             {
-                Console.WriteLine($"发现新版本: {latestRelease.TagName}");
+                Console.WriteLine(string.Format(AppLang.发现新版本, latestRelease.TagName));
                 return (true, latestRelease, null);
             }
 
-            Console.WriteLine("当前已是最新版本");
+            Console.WriteLine(AppLang.当前已是最新版本);
             return (false, null, null);
         }
         catch (Exception ex)
@@ -116,7 +141,19 @@ public class ZigmUpdaterService
 
             if (asset == null)
             {
-                Console.WriteLine($"未找到兼容的包: {runtimeId}");
+                Console.WriteLine(string.Format(AppLang.未找到兼容的包, runtimeId));
+                return false;
+            }
+
+            if (asset.Name == null)
+            {
+                Console.WriteLine(AppLang.资产包名称为空);
+                return false;
+            }
+
+            if (asset.BrowserDownloadUrl == null)
+            {
+                Console.WriteLine(AppLang.资产包下载链接为空);
                 return false;
             }
 
@@ -125,7 +162,7 @@ public class ZigmUpdaterService
 
             // 3. 下载文件
             var downloadPath = Path.Combine(_tempDir, asset.Name);
-            Console.WriteLine($"正在下载: {asset.Name}");
+            Console.WriteLine(string.Format(AppLang.正在下载, asset.Name));
             await DownloadFileAsync(asset.BrowserDownloadUrl, downloadPath);
 
             // 4. 提取文件
@@ -147,12 +184,12 @@ public class ZigmUpdaterService
             // 5. 替换文件
             await ReplaceFilesAsync(extractDir);
 
-            Console.WriteLine("更新完成，请重启应用程序");
+            Console.WriteLine(AppLang.更新完成请重启应用程序);
             return true;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"更新失败: {ex.Message}");
+            Console.WriteLine(string.Format(AppLang.更新失败, ex.Message));
             return false;
         }
         finally
@@ -253,12 +290,15 @@ del ""%~f0""
                 CreateNoWindow = true
             });
 
-            await process?.WaitForExitAsync();
+            if (process != null)
+            {
+                await process.WaitForExitAsync();
+            }
         }
         catch
         {
             // 如果 chmod 失败，尝试其他方法
-            Console.WriteLine("警告: 无法设置可执行权限，请手动执行: chmod +x " + filePath);
+            Console.WriteLine(string.Format(AppLang.警告无法设置可执行权限, filePath));
         }
     }
 
@@ -324,7 +364,8 @@ del ""%~f0""
     /// </summary>
     private async Task DownloadFileAsync(string url, string savePath)
     {
-        using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+        using var client = CreateHttpClient();
+        using var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
         response.EnsureSuccessStatusCode();
 
         using var stream = await response.Content.ReadAsStreamAsync();
@@ -357,34 +398,7 @@ del ""%~f0""
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"清理临时文件失败: {ex.Message}");
+            Console.WriteLine(string.Format(AppLang.清理临时文件失败, ex.Message));
         }
     }
 }
-
-#region 模型类
-public class GitHubRelease
-{
-    [JsonPropertyName("tag_name")]
-    public string? TagName { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("assets")]
-    public List<GitHubAsset>? Assets { get; set; }
-}
-
-public class GitHubAsset
-{
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("browser_download_url")]
-    public string? BrowserDownloadUrl { get; set; }
-}
-
-[JsonSerializable(typeof(GitHubRelease))]
-[JsonSerializable(typeof(GitHubAsset))]
-public partial class GithubContext : JsonSerializerContext { }
-#endregion

@@ -1,25 +1,32 @@
 using System.Text.Json;
 using Zigm.Helpers;
-using Zigm.Models;
 using Zigm.Languages;
+using Zigm.Models;
+using Zigm.Services.Interfaces;
 
 namespace Zigm.Services;
 
 /// <summary>
 /// Zig版本服务类，负责获取和管理Zig版本信息
 /// </summary>
-public class ZigVersionService
+public class ZigVersionService : IZigVersionService
 {
-    private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
     private const string ZigDownloadIndexUrl = "https://ziglang.org/download/index.json";
 
     /// <summary>
     /// 构造函数
     /// </summary>
-    public ZigVersionService()
+    public ZigVersionService(IHttpClientFactory httpClientFactory)
     {
-        _httpClient = new HttpClient();
-        _httpClient.Timeout = TimeSpan.FromSeconds(30);
+        _httpClientFactory = httpClientFactory;
+    }
+
+    private HttpClient CreateHttpClient()
+    {
+        var client = _httpClientFactory.CreateClient();
+        client.Timeout = TimeSpan.FromSeconds(30);
+        return client;
     }
 
     /// <summary>
@@ -30,18 +37,16 @@ public class ZigVersionService
     {
         try
         {
-            // 使用官方JSON API获取版本信息
-            var response = await _httpClient.GetAsync(ZigDownloadIndexUrl);
+            using var client = CreateHttpClient();
+            var response = await client.GetAsync(ZigDownloadIndexUrl);
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
 
-            // 解析JSON内容
-            return ParseVersionsFromJson(content);
+            return await ParseVersionsFromJsonAsync(content);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"获取Zig版本信息失败: {ex.Message}");
-            // 失败时返回模拟数据
+            Console.WriteLine(string.Format(AppLang.获取Zig版本信息失败, ex.Message));
             return GetMockVersions();
         }
     }
@@ -51,90 +56,98 @@ public class ZigVersionService
     /// </summary>
     /// <param name="jsonContent">JSON内容</param>
     /// <returns>Zig版本列表</returns>
-    private List<ZigVersion> ParseVersionsFromJson(string jsonContent)
+    private Task<List<ZigVersion>> ParseVersionsFromJsonAsync(string jsonContent)
     {
-        var versions = new List<ZigVersion>();
-        
-        try
+        return Task.Run(() =>
         {
-            // 解析JSON
-            var versionData = JsonSerializer.Deserialize(jsonContent, ZigJsonContext.Default.DictionaryStringJsonElement);
-            if (versionData == null)
-            {
-                return versions;
-            }
+            var versions = new List<ZigVersion>();
 
-            // 获取当前系统架构
-            var currentArch = SystemHelper.GetSystemArchitecture();
-            
-            // 遍历所有版本
-            foreach (var (versionKey, versionElement) in versionData)
+            try
             {
-                // 解析版本信息
-                string actualVersion = versionKey;
-                DateTime releaseDate = DateTime.Now;
-                string versionType = "stable";
-                
-                // 尝试获取version字段（如果存在）
-                if (versionElement.TryGetProperty("version", out var versionProp))
+                var versionData = JsonSerializer.Deserialize(jsonContent, ZigJsonContext.Default.DictionaryStringVersionEntry);
+                if (versionData == null)
                 {
-                    actualVersion = versionProp.GetString() ?? versionKey;
+                    return versions;
                 }
-                
-                // 尝试获取date字段
-                if (versionElement.TryGetProperty("date", out var dateProp))
+
+                var currentArch = SystemHelper.GetSystemArchitecture();
+
+                foreach (var (versionKey, versionEntry) in versionData)
                 {
-                    var dateStr = dateProp.GetString();
-                    if (!string.IsNullOrEmpty(dateStr) && DateTime.TryParse(dateStr, out var parsedDate))
+                    var zigVersion = MapToZigVersion(versionKey, versionEntry, currentArch);
+                    if (zigVersion != null)
                     {
-                        releaseDate = parsedDate;
+                        versions.Add(zigVersion);
                     }
                 }
-                
-                // 确定版本类型
-                if (versionKey == "master" || actualVersion.Contains("dev"))
-                {
-                    versionType = "dev";
-                }
-                else if (versionKey.Contains("nightly"))
-                {
-                    versionType = "nightly";
-                }
-                
-                // 检查当前系统架构是否在该版本中存在
-                if (versionElement.TryGetProperty(currentArch, out var archElement))
-                {
-                    // 该版本支持当前系统，创建ZigVersion对象
-                    var zigVersion = new ZigVersion
-                    {
-                        Version = actualVersion,
-                        ReleaseDate = releaseDate,
-                        Type = versionType
-                    };
-                    
-                    // 获取下载链接
-                    if (archElement.TryGetProperty("tarball", out var tarballProp))
-                    {
-                        var tarballUrl = tarballProp.GetString();
-                        if (!string.IsNullOrEmpty(tarballUrl))
-                        {
-                            zigVersion.DownloadUrls.Add(currentArch, tarballUrl);
-                        }
-                    }
-                    
-                    versions.Add(zigVersion);
-                }
+
+                versions.Sort((a, b) => CompareVersions(b.Version!, a.Version!));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format(AppLang.解析Zig版本JSON失败, ex.Message));
             }
 
-            // 按版本号降序排序
-            versions.Sort((a, b) => CompareVersions(b.Version!, a.Version!));
-        }
-        catch (Exception ex)
+            return versions;
+        });
+    }
+
+    /// <summary>
+    /// 将 VersionEntry 映射到 ZigVersion
+    /// </summary>
+    private ZigVersion? MapToZigVersion(string versionKey, VersionEntry versionEntry, string currentArch)
+    {
+        var actualVersion = versionEntry.Version ?? versionKey;
+        var releaseDate = ParseDate(versionEntry.Date);
+        var versionType = DetermineVersionType(versionKey, actualVersion);
+
+        if (versionEntry.ArchitectureDownloads != null && 
+            versionEntry.ArchitectureDownloads.TryGetValue(currentArch, out var archElement))
         {
-            Console.WriteLine($"解析Zig版本JSON失败: {ex.Message}");
+            var downloadResource = archElement.Deserialize(ZigJsonContext.Default.DownloadResource);
+            if (downloadResource != null && !string.IsNullOrEmpty(downloadResource.Tarball))
+            {
+                var zigVersion = new ZigVersion
+                {
+                    Version = actualVersion,
+                    ReleaseDate = releaseDate,
+                    Type = versionType
+                };
+
+                zigVersion.DownloadUrls.Add(currentArch, downloadResource.Tarball);
+                return zigVersion;
+            }
         }
 
-        return versions;
+        return null;
+    }
+
+    /// <summary>
+    /// 解析日期字符串
+    /// </summary>
+    private DateTime ParseDate(string? dateStr)
+    {
+        if (!string.IsNullOrEmpty(dateStr) && DateTime.TryParse(dateStr, out var parsedDate))
+        {
+            return parsedDate;
+        }
+        return DateTime.Now;
+    }
+
+    /// <summary>
+    /// 确定版本类型
+    /// </summary>
+    private string DetermineVersionType(string versionKey, string actualVersion)
+    {
+        if (versionKey == "master" || actualVersion.Contains("dev"))
+        {
+            return "dev";
+        }
+        else if (versionKey.Contains("nightly"))
+        {
+            return "nightly";
+        }
+        return "stable";
     }
 
     /// <summary>
@@ -145,17 +158,16 @@ public class ZigVersionService
     {
         try
         {
-            // 使用官方JSON API获取版本信息
-            var response = await _httpClient.GetAsync(ZigDownloadIndexUrl);
+            using var client = CreateHttpClient();
+            var response = await client.GetAsync(ZigDownloadIndexUrl);
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
 
-            // 解析JSON内容，提取nightly版本
-            return ParseLatestNightlyFromJson(content);
+            return await ParseLatestNightlyFromJsonAsync(content);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"获取Zig nightly版本信息失败: {ex.Message}");
+            Console.WriteLine(string.Format(AppLang.获取ZigNightly版本信息失败, ex.Message));
             return null;
         }
     }
@@ -165,50 +177,30 @@ public class ZigVersionService
     /// </summary>
     /// <param name="jsonContent">JSON内容</param>
     /// <returns>最新的nightly版本，如果解析失败则返回null</returns>
-    private ZigVersion? ParseLatestNightlyFromJson(string jsonContent)
+    private Task<ZigVersion?> ParseLatestNightlyFromJsonAsync(string jsonContent)
     {
-        try
+        return Task.Run(() =>
         {
-            // 解析JSON
-            var versionData = JsonSerializer.Deserialize(jsonContent, ZigJsonContext.Default.DictionaryStringJsonElement);
-            if (versionData == null)
+            try
             {
-                return null;
-            }
+                var versionData = JsonSerializer.Deserialize(jsonContent, ZigJsonContext.Default.DictionaryStringVersionEntry);
+                if (versionData == null)
+                {
+                    return null;
+                }
 
-            // 获取当前系统架构
-            var currentArch = SystemHelper.GetSystemArchitecture();
-            
-            // 获取master版本（作为最新开发版本）
-            if (versionData.TryGetValue("master", out var masterElement))
-            {
-                string actualVersion = "master";
-                DateTime releaseDate = DateTime.Now;
-                
-                // 尝试获取version字段
-                if (masterElement.TryGetProperty("version", out var versionProp))
+                var currentArch = SystemHelper.GetSystemArchitecture();
+
+                if (versionData.TryGetValue("master", out var masterEntry))
                 {
-                    actualVersion = versionProp.GetString() ?? "master";
-                }
-                
-                // 尝试获取date字段
-                if (masterElement.TryGetProperty("date", out var dateProp))
-                {
-                    var dateStr = dateProp.GetString();
-                    if (!string.IsNullOrEmpty(dateStr) && DateTime.TryParse(dateStr, out var parsedDate))
+                    var actualVersion = masterEntry.Version ?? "master";
+                    var releaseDate = ParseDate(masterEntry.Date);
+
+                    if (masterEntry.ArchitectureDownloads != null && 
+                        masterEntry.ArchitectureDownloads.TryGetValue(currentArch, out var archElement))
                     {
-                        releaseDate = parsedDate;
-                    }
-                }
-                
-                // 检查当前系统架构是否在该版本中存在
-                if (masterElement.TryGetProperty(currentArch, out var archElement))
-                {
-                    // 获取下载链接
-                    if (archElement.TryGetProperty("tarball", out var tarballProp))
-                    {
-                        var tarballUrl = tarballProp.GetString();
-                        if (!string.IsNullOrEmpty(tarballUrl))
+                        var downloadResource = archElement.Deserialize(ZigJsonContext.Default.DownloadResource);
+                        if (downloadResource != null && !string.IsNullOrEmpty(downloadResource.Tarball))
                         {
                             var zigVersion = new ZigVersion
                             {
@@ -216,20 +208,20 @@ public class ZigVersionService
                                 ReleaseDate = releaseDate,
                                 Type = "dev"
                             };
-                            zigVersion.DownloadUrls.Add(currentArch, tarballUrl);
+                            zigVersion.DownloadUrls.Add(currentArch, downloadResource.Tarball);
                             return zigVersion;
                         }
                     }
                 }
+
+                return null;
             }
-            
-            return null;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"解析Zig nightly版本JSON失败: {ex.Message}");
-            return null;
-        }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format(AppLang.解析ZigNightly版本JSON失败, ex.Message));
+                return null;
+            }
+        });
     }
 
     /// <summary>
@@ -241,102 +233,70 @@ public class ZigVersionService
     {
         try
         {
-            // 先检查稳定版本
             var versions = await GetStableVersionsAsync();
             var version = versions.FirstOrDefault(v => v.Version == versionNumber);
-            
+
             if (version != null)
             {
                 return version;
             }
-            
-            // 如果不是稳定版本，检查master版本
+
             var masterVersion = await GetLatestNightlyVersionAsync();
             if (masterVersion?.Version == versionNumber || versionNumber == "master")
             {
                 return masterVersion;
             }
-            
-            // 如果都找不到，尝试从JSON API直接获取
-            var response = await _httpClient.GetAsync(ZigDownloadIndexUrl);
+
+            using var client = CreateHttpClient();
+            var response = await client.GetAsync(ZigDownloadIndexUrl);
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            
-            // 解析JSON内容
-            var versionData = JsonSerializer.Deserialize(content, ZigJsonContext.Default.DictionaryStringJsonElement);
-            if (versionData != null)
-            {
-                // 查找版本（可能是版本号作为键，或者在version字段中）
-                foreach (var (key, value) in versionData)
-                {
-                    // 检查键是否匹配，或者version字段是否匹配
-                    string actualVersion = key;
-                    if (value.TryGetProperty("version", out var versionProp))
-                    {
-                        actualVersion = versionProp.GetString() ?? key;
-                    }
-                    
-                    if (key == versionNumber || actualVersion == versionNumber)
-                    {
-                        // 获取当前系统架构
-                        var currentArch = SystemHelper.GetSystemArchitecture();
-                        
-                        // 检查当前系统架构是否在该版本中存在
-                        if (value.TryGetProperty(currentArch, out var archElement))
-                        {
-                            // 获取下载链接
-                            if (archElement.TryGetProperty("tarball", out var tarballProp))
-                            {
-                                var tarballUrl = tarballProp.GetString();
-                                if (!string.IsNullOrEmpty(tarballUrl))
-                                {
-                                    // 解析版本信息
-                                    DateTime releaseDate = DateTime.Now;
-                                    string versionType = "stable";
-                                    
-                                    // 尝试获取date字段
-                                    if (value.TryGetProperty("date", out var dateProp))
-                                    {
-                                        var dateStr = dateProp.GetString();
-                                        if (!string.IsNullOrEmpty(dateStr) && DateTime.TryParse(dateStr, out var parsedDate))
-                                        {
-                                            releaseDate = parsedDate;
-                                        }
-                                    }
-                                    
-                                    // 确定版本类型
-                                    if (key == "master" || actualVersion.Contains("dev"))
-                                    {
-                                        versionType = "dev";
-                                    }
-                                    else if (key.Contains("nightly"))
-                                    {
-                                        versionType = "nightly";
-                                    }
-                                    
-                                    var customVersion = new ZigVersion
-                                    {
-                                        Version = actualVersion,
-                                        ReleaseDate = releaseDate,
-                                        Type = versionType
-                                    };
-                                    customVersion.DownloadUrls.Add(currentArch, tarballUrl);
-                                    return customVersion;
-                                }
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            
-            return null;
+
+            return await FindVersionInJsonAsync(content, versionNumber);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"获取指定版本失败: {ex.Message}");
+            Console.WriteLine(string.Format(AppLang.获取指定版本失败, ex.Message));
             return null;
         }
+    }
+
+    /// <summary>
+    /// 在JSON中查找特定版本
+    /// </summary>
+    private Task<ZigVersion?> FindVersionInJsonAsync(string jsonContent, string versionNumber)
+    {
+        return Task.Run(() =>
+        {
+            try
+            {
+                var versionData = JsonSerializer.Deserialize(jsonContent, ZigJsonContext.Default.DictionaryStringVersionEntry);
+                if (versionData == null)
+                {
+                    return null;
+                }
+
+                var currentArch = SystemHelper.GetSystemArchitecture();
+
+                foreach (var (key, versionEntry) in versionData)
+                {
+                    var actualVersion = versionEntry.Version ?? key;
+
+                    if (key == versionNumber || actualVersion == versionNumber)
+                    {
+                        var zigVersion = MapToZigVersion(key, versionEntry, currentArch);
+                        return zigVersion;
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format(AppLang.在JSON中查找版本失败, ex.Message));
+                return null;
+            }
+        });
     }
 
     /// <summary>
@@ -354,7 +314,6 @@ public class ZigVersionService
 
         try
         {
-            // 移除nightly等后缀
             var v1 = version1.Split('-')[0];
             var v2 = version2.Split('-')[0];
 
@@ -362,8 +321,7 @@ public class ZigVersionService
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"版本比较失败: {ex.Message}");
-            // 失败时使用字符串比较
+            Console.WriteLine(string.Format(AppLang.版本比较失败, ex.Message));
             return string.Compare(version1, version2, StringComparison.Ordinal);
         }
     }
@@ -383,10 +341,8 @@ public class ZigVersionService
             new ZigVersion { Version = "0.9.1", ReleaseDate = new DateTime(2023, 10, 10), Type = "stable" }
         };
 
-        // 为每个模拟版本添加下载链接
         foreach (var version in mockVersions)
         {
-            // 只添加当前系统的下载链接
             version.DownloadUrls.Add(currentArch, $"https://ziglang.org/builds/zig-{currentArch}-{version.Version}.tar.xz");
         }
 

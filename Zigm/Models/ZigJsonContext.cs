@@ -9,6 +9,9 @@ using System.Text.Json.Serialization;
 [JsonSourceGenerationOptions(WriteIndented = true)]
 [JsonSerializable(typeof(Dictionary<string, JsonElement>))]
 [JsonSerializable(typeof(Dictionary<string, string>))]
+[JsonSerializable(typeof(Dictionary<string, VersionEntry>))]
+[JsonSerializable(typeof(VersionEntry))]
+[JsonSerializable(typeof(DownloadResource))]
 public partial class ZigJsonContext : JsonSerializerContext
 {
     // 自动生成实现

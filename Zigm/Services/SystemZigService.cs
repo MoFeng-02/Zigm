@@ -1,11 +1,12 @@
 using Zigm.Languages;
+using Zigm.Services.Interfaces;
 
 namespace Zigm.Services;
 
 /// <summary>
 /// 系统Zig服务类，负责检测系统中已安装的Zig版本
 /// </summary>
-public class SystemZigService
+public class SystemZigService : ISystemZigService
 {
     /// <summary>
     /// 构造函数

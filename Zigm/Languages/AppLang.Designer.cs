@@ -61,6 +61,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 tar.xz文件解压功能将在后续实现 的本地化字符串。
+        /// </summary>
+        public static string tarxz文件解压功能将在后续实现 {
+            get {
+                return ResourceManager.GetString("tarxz文件解压功能将在后续实现", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Zigm未管理任何本地Zig版本 的本地化字符串。
         /// </summary>
         public static string Zigm未管理本地版本 {
@@ -75,6 +84,24 @@ namespace Zigm.Languages {
         public static string Zigm管理的本地Zig版本 {
             get {
                 return ResourceManager.GetString("Zigm管理的本地Zig版本", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  - Zig版本管理工具 的本地化字符串。
+        /// </summary>
+        public static string Zig版本管理工具 {
+            get {
+                return ResourceManager.GetString("Zig版本管理工具", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下载Zig版本失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 下载Zig版本失败 {
+            get {
+                return ResourceManager.GetString("下载Zig版本失败", resourceCulture);
             }
         }
         
@@ -97,11 +124,29 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 下载进度: {0:F2}% ({1:N0}/{2:N0} 字节) 的本地化字符串。
+        /// </summary>
+        public static string 下载进度 {
+            get {
+                return ResourceManager.GetString("下载进度", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 不支持当前系统架构: {0} 的本地化字符串。
         /// </summary>
         public static string 不支持当前系统架构 {
             get {
                 return ResourceManager.GetString("不支持当前系统架构", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 不支持的文件格式: {0} 的本地化字符串。
+        /// </summary>
+        public static string 不支持的文件格式 {
+            get {
+                return ResourceManager.GetString("不支持的文件格式", resourceCulture);
             }
         }
         
@@ -115,11 +160,38 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 1. 右键点击命令提示符或PowerShell，选择&apos;以管理员身份运行&apos; 的本地化字符串。
+        /// </summary>
+        public static string 以管理员身份运行提示 {
+            get {
+                return ResourceManager.GetString("以管理员身份运行提示", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 使用上下箭头键选择，按Enter键执行，按Esc键退出 的本地化字符串。
         /// </summary>
         public static string 使用上下箭头选择 {
             get {
                 return ResourceManager.GetString("使用上下箭头选择", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 使用方法: zigm [命令] [参数] 的本地化字符串。
+        /// </summary>
+        public static string 使用方法 {
+            get {
+                return ResourceManager.GetString("使用方法", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 1. 使用用户级安装（不加 --global 参数） 的本地化字符串。
+        /// </summary>
+        public static string 使用用户级安装提示 {
+            get {
+                return ResourceManager.GetString("使用用户级安装提示", resourceCulture);
             }
         }
         
@@ -151,6 +223,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 修改系统级环境变量需要管理员权限。 的本地化字符串。
+        /// </summary>
+        public static string 修改系统级环境变量需要管理员权限 {
+            get {
+                return ResourceManager.GetString("修改系统级环境变量需要管理员权限", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 共安装了 {0} 个版本 的本地化字符串。
         /// </summary>
         public static string 共安装了版本 {
@@ -165,6 +246,15 @@ namespace Zigm.Languages {
         public static string 共找到版本 {
             get {
                 return ResourceManager.GetString("共找到版本", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 切换到指定版本的Zig 的本地化字符串。
+        /// </summary>
+        public static string 切换到指定版本的Zig {
+            get {
+                return ResourceManager.GetString("切换到指定版本的Zig", resourceCulture);
             }
         }
         
@@ -232,11 +322,29 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 卸载指定版本的Zig 的本地化字符串。
+        /// </summary>
+        public static string 卸载指定版本的Zig {
+            get {
+                return ResourceManager.GetString("卸载指定版本的Zig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 卸载版本 的本地化字符串。
         /// </summary>
         public static string 卸载版本 {
             get {
                 return ResourceManager.GetString("卸载版本", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 发现新版本: {0} 的本地化字符串。
+        /// </summary>
+        public static string 发现新版本 {
+            get {
+                return ResourceManager.GetString("发现新版本", resourceCulture);
             }
         }
         
@@ -286,6 +394,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 在JSON中查找版本失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 在JSON中查找版本失败 {
+            get {
+                return ResourceManager.GetString("在JSON中查找版本失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 在Linux, MacOS, BSD上设置PATH: 的本地化字符串。
         /// </summary>
         public static string 在LinuxMacOSBSD上设置PATH {
@@ -318,6 +435,15 @@ namespace Zigm.Languages {
         public static string 安装Zig版本 {
             get {
                 return ResourceManager.GetString("安装Zig版本", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 安装指定版本的Zig 的本地化字符串。
+        /// </summary>
+        public static string 安装指定版本的Zig {
+            get {
+                return ResourceManager.GetString("安装指定版本的Zig", resourceCulture);
             }
         }
         
@@ -439,6 +565,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 当前已是最新版本 的本地化字符串。
+        /// </summary>
+        public static string 当前已是最新版本 {
+            get {
+                return ResourceManager.GetString("当前已是最新版本", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 当前版本 的本地化字符串。
         /// </summary>
         public static string 当前版本 {
@@ -453,6 +588,15 @@ namespace Zigm.Languages {
         public static string 当前版本配置 {
             get {
                 return ResourceManager.GetString("当前版本配置", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 或者: 的本地化字符串。
+        /// </summary>
+        public static string 或者 {
+            get {
+                return ResourceManager.GetString("或者", resourceCulture);
             }
         }
         
@@ -493,6 +637,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 支持的命令: 的本地化字符串。
+        /// </summary>
+        public static string 支持的命令 {
+            get {
+                return ResourceManager.GetString("支持的命令", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 无效的config命令用法 的本地化字符串。
         /// </summary>
         public static string 无效的config命令用法 {
@@ -520,6 +673,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 显示帮助信息 的本地化字符串。
+        /// </summary>
+        public static string 显示帮助信息 {
+            get {
+                return ResourceManager.GetString("显示帮助信息", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 显示当前使用的Zig版本... 的本地化字符串。
         /// </summary>
         public static string 显示当前版本 {
@@ -538,6 +700,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 更多信息请访问项目仓库。 的本地化字符串。
+        /// </summary>
+        public static string 更多信息请访问项目仓库 {
+            get {
+                return ResourceManager.GetString("更多信息请访问项目仓库", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 更新Zigm到最新版本... 的本地化字符串。
         /// </summary>
         public static string 更新到最新版本 {
@@ -547,11 +718,47 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 更新失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 更新失败 {
+            get {
+                return ResourceManager.GetString("更新失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 更新完成，请重启应用程序 的本地化字符串。
+        /// </summary>
+        public static string 更新完成请重启应用程序 {
+            get {
+                return ResourceManager.GetString("更新完成请重启应用程序", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 更新配置项 {0} 失败: {1} 的本地化字符串。
         /// </summary>
         public static string 更新配置项失败 {
             get {
                 return ResourceManager.GetString("更新配置项失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 未找到兼容的包: {0} 的本地化字符串。
+        /// </summary>
+        public static string 未找到兼容的包 {
+            get {
+                return ResourceManager.GetString("未找到兼容的包", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 未知命令: {0} 的本地化字符串。
+        /// </summary>
+        public static string 未知命令 {
+            get {
+                return ResourceManager.GetString("未知命令", resourceCulture);
             }
         }
         
@@ -646,6 +853,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 检查更新中... 的本地化字符串。
+        /// </summary>
+        public static string 检查更新中 {
+            get {
+                return ResourceManager.GetString("检查更新中", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 正在下载: {0} 的本地化字符串。
         /// </summary>
         public static string 正在下载 {
@@ -660,6 +876,15 @@ namespace Zigm.Languages {
         public static string 正在安装版本 {
             get {
                 return ResourceManager.GetString("正在安装版本", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 清理临时文件失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 清理临时文件失败 {
+            get {
+                return ResourceManager.GetString("清理临时文件失败", resourceCulture);
             }
         }
         
@@ -718,6 +943,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 版本 {0} {1} 的本地化字符串。
+        /// </summary>
+        public static string 版本已安装 {
+            get {
+                return ResourceManager.GetString("版本已安装", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 版本 {0} 是当前使用的版本，无法卸载 的本地化字符串。
         /// </summary>
         public static string 版本是当前使用的版本无法卸载 {
@@ -736,11 +970,29 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 版本比较失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 版本比较失败 {
+            get {
+                return ResourceManager.GetString("版本比较失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 环境变量已刷新 的本地化字符串。
         /// </summary>
         public static string 环境变量已刷新 {
             get {
                 return ResourceManager.GetString("环境变量已刷新", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 用户级 的本地化字符串。
+        /// </summary>
+        public static string 用户级 {
+            get {
+                return ResourceManager.GetString("用户级", resourceCulture);
             }
         }
         
@@ -754,11 +1006,29 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 2. 这将只修改当前用户的环境变量 的本地化字符串。
+        /// </summary>
+        public static string 用户级安装说明 {
+            get {
+                return ResourceManager.GetString("用户级安装说明", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 用法： 的本地化字符串。
         /// </summary>
         public static string 用法 {
             get {
                 return ResourceManager.GetString("用法", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 示例: 的本地化字符串。
+        /// </summary>
+        public static string 示例 {
+            get {
+                return ResourceManager.GetString("示例", resourceCulture);
             }
         }
         
@@ -772,11 +1042,29 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 管理Zigm配置 的本地化字符串。
+        /// </summary>
+        public static string 管理Zigm配置 {
+            get {
+                return ResourceManager.GetString("管理Zigm配置", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 系统中已安装的Zig信息: 的本地化字符串。
         /// </summary>
         public static string 系统已安装信息 {
             get {
                 return ResourceManager.GetString("系统已安装信息", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 系统级 的本地化字符串。
+        /// </summary>
+        public static string 系统级 {
+            get {
+                return ResourceManager.GetString("系统级", resourceCulture);
             }
         }
         
@@ -808,6 +1096,33 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 获取Zig nightly版本信息失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 获取ZigNightly版本信息失败 {
+            get {
+                return ResourceManager.GetString("获取ZigNightly版本信息失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 获取Zig版本信息失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 获取Zig版本信息失败 {
+            get {
+                return ResourceManager.GetString("获取Zig版本信息失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 获取指定版本失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 获取指定版本失败 {
+            get {
+                return ResourceManager.GetString("获取指定版本失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 正在获取版本信息，请稍候... 的本地化字符串。
         /// </summary>
         public static string 获取版本信息 {
@@ -822,6 +1137,42 @@ namespace Zigm.Languages {
         public static string 要在Windows上设置PATH请在PowerShell中运行以下任一代码片段 {
             get {
                 return ResourceManager.GetString("要在Windows上设置PATH请在PowerShell中运行以下任一代码片段", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 解决方案: 的本地化字符串。
+        /// </summary>
+        public static string 解决方案 {
+            get {
+                return ResourceManager.GetString("解决方案", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 解析Zig nightly版本JSON失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 解析ZigNightly版本JSON失败 {
+            get {
+                return ResourceManager.GetString("解析ZigNightly版本JSON失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 解析Zig版本JSON失败: {0} 的本地化字符串。
+        /// </summary>
+        public static string 解析Zig版本JSON失败 {
+            get {
+                return ResourceManager.GetString("解析Zig版本JSON失败", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 警告: 无法设置可执行权限，请手动执行: chmod +x {0} 的本地化字符串。
+        /// </summary>
+        public static string 警告无法设置可执行权限 {
+            get {
+                return ResourceManager.GetString("警告无法设置可执行权限", resourceCulture);
             }
         }
         
@@ -907,6 +1258,24 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 资产包下载链接为空 的本地化字符串。
+        /// </summary>
+        public static string 资产包下载链接为空 {
+            get {
+                return ResourceManager.GetString("资产包下载链接为空", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 资产包名称为空 的本地化字符串。
+        /// </summary>
+        public static string 资产包名称为空 {
+            get {
+                return ResourceManager.GetString("资产包名称为空", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 路径: {0} 的本地化字符串。
         /// </summary>
         public static string 路径 {
@@ -943,6 +1312,15 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 配置文件路径 的本地化字符串。
+        /// </summary>
+        public static string 配置文件路径 {
+            get {
+                return ResourceManager.GetString("配置文件路径", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 配置项 {0} 已更新为 {1} 的本地化字符串。
         /// </summary>
         public static string 配置项已更新 {
@@ -952,11 +1330,38 @@ namespace Zigm.Languages {
         }
         
         /// <summary>
+        ///   查找类似 2. 重新运行此命令 的本地化字符串。
+        /// </summary>
+        public static string 重新运行此命令 {
+            get {
+                return ResourceManager.GetString("重新运行此命令", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 重置配置为默认值 的本地化字符串。
         /// </summary>
         public static string 重置配置为默认值 {
             get {
                 return ResourceManager.GetString("重置配置为默认值", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 错误信息: {0} 的本地化字符串。
+        /// </summary>
+        public static string 错误信息 {
+            get {
+                return ResourceManager.GetString("错误信息", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 错误: 权限不足 的本地化字符串。
+        /// </summary>
+        public static string 错误权限不足 {
+            get {
+                return ResourceManager.GetString("错误权限不足", resourceCulture);
             }
         }
         
