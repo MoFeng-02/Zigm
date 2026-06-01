@@ -44,7 +44,12 @@ public static class ServiceCollectionExtensions
             return new ZigInstallerService(localStorageService, zigVersionService, environmentService, config, httpClientFactory);
         });
         services.AddSingleton<ISystemZigService, SystemZigService>();
-        services.AddSingleton<IZigmUpdaterService, ZigmUpdaterService>();
+        services.AddSingleton<IZigmUpdaterService>(sp =>
+        {
+            var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
+            var localStorageService = sp.GetRequiredService<ILocalStorageService>();
+            return new ZigmUpdaterService(httpClientFactory, localStorageService);
+        });
 
         return services;
     }

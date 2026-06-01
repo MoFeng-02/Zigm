@@ -25,6 +25,12 @@ public interface ILocalStorageService
     string GetBinPath();
 
     /// <summary>
+    /// 获取 Zigm 的 downloads 目录路径（用于存储下载的文件）
+    /// </summary>
+    /// <returns>downloads 目录路径</returns>
+    string GetDownloadsPath();
+
+    /// <summary>
     /// 列出所有已安装的 Zig 版本
     /// </summary>
     /// <returns>已安装版本列表</returns>

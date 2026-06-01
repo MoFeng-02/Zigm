@@ -15,6 +15,7 @@ namespace Zigm.Services;
 public class ZigmUpdaterService : IZigmUpdaterService
 {
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly ILocalStorageService _localStorageService;
     private readonly string _currentVersion;
     private const string GitHubApiUrl = "https://api.github.com/repos/MoFeng-02/Zigm/releases/latest";
     private readonly string? _currentExePath;
@@ -24,9 +25,10 @@ public class ZigmUpdaterService : IZigmUpdaterService
     /// <summary>
     /// 构造函数
     /// </summary>
-    public ZigmUpdaterService(IHttpClientFactory httpClientFactory)
+    public ZigmUpdaterService(IHttpClientFactory httpClientFactory, ILocalStorageService localStorageService)
     {
         _httpClientFactory = httpClientFactory;
+        _localStorageService = localStorageService;
         _currentVersion = GetCurrentVersion();
         var process = Process.GetCurrentProcess();
         _currentExePath = process.MainModule?.FileName;
@@ -157,16 +159,22 @@ public class ZigmUpdaterService : IZigmUpdaterService
                 return false;
             }
 
-            // 2. 创建临时目录
+            // 2. 创建目录（使用 zigm 自己的 downloads 目录）
+            var downloadsPath = _localStorageService.GetDownloadsPath();
+            Directory.CreateDirectory(downloadsPath);
             Directory.CreateDirectory(_tempDir);
 
             // 3. 下载文件
-            var downloadPath = Path.Combine(_tempDir, asset.Name);
+            var downloadPath = Path.Combine(downloadsPath, asset.Name);
             Console.WriteLine(string.Format(AppLang.正在下载, asset.Name));
+            Console.WriteLine(string.Format(AppLang.从, asset.BrowserDownloadUrl));
+            Console.WriteLine(string.Format(AppLang.到, downloadPath));
             await DownloadFileAsync(asset.BrowserDownloadUrl, downloadPath);
+            Console.WriteLine(AppLang.下载完成);
 
             // 4. 提取文件
             var extractDir = Path.Combine(_tempDir, "extracted");
+            Directory.CreateDirectory(extractDir);
 
             if (asset.Name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
             {
@@ -181,7 +189,17 @@ public class ZigmUpdaterService : IZigmUpdaterService
                 throw new NotSupportedException($"不支持的压缩格式: {Path.GetExtension(asset.Name)}");
             }
 
-            // 5. 替换文件
+            // 5. 验证版本
+            if (!string.IsNullOrEmpty(release.TagName))
+            {
+                var expectedVersion = release.TagName.TrimStart('v', 'V');
+                if (!VerifyExtractedVersion(extractDir, expectedVersion))
+                {
+                    Console.WriteLine("警告：无法验证下载的版本是否匹配，但将继续更新...");
+                }
+            }
+
+            // 6. 替换文件
             await ReplaceFilesAsync(extractDir);
 
             Console.WriteLine(AppLang.更新完成请重启应用程序);
@@ -195,6 +213,52 @@ public class ZigmUpdaterService : IZigmUpdaterService
         finally
         {
             CleanupTempFiles();
+        }
+    }
+
+    /// <summary>
+    /// 验证提取的版本是否正确
+    /// </summary>
+    private bool VerifyExtractedVersion(string extractDir, string expectedVersion)
+    {
+        try
+        {
+            // 尝试从提取的文件中查找版本信息
+            // 优先检查 version.json 文件
+            var versionJsonPath = Path.Combine(extractDir, "version.json");
+            if (File.Exists(versionJsonPath))
+            {
+                var content = File.ReadAllText(versionJsonPath);
+                using var doc = JsonDocument.Parse(content);
+                if (doc.RootElement.TryGetProperty("version", out var versionElement))
+                {
+                    var extractedVersion = versionElement.GetString()?.Trim();
+                    return !string.IsNullOrEmpty(extractedVersion) && 
+                           extractedVersion.Equals(expectedVersion, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            // 尝试从可执行文件名推断（如 zigm-v1.0.0-win-x64.exe）
+            var exeExtension = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? ".exe" : "";
+            var exeFiles = Directory.GetFiles(extractDir, $"*zigm*{exeExtension}", SearchOption.AllDirectories);
+            foreach (var exeFile in exeFiles)
+            {
+                var fileName = Path.GetFileNameWithoutExtension(exeFile);
+                var versionMatch = System.Text.RegularExpressions.Regex.Match(fileName, @"v?(\d+\.\d+\.\d+)");
+                if (versionMatch.Success)
+                {
+                    var extractedVersion = versionMatch.Groups[1].Value;
+                    return extractedVersion.Equals(expectedVersion, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            // 如果找不到明确的版本信息，返回 false 表示无法验证，但不阻止更新
+            return false;
+        }
+        catch
+        {
+            // 验证过程出错，不阻止更新
+            return false;
         }
     }
 
@@ -368,10 +432,26 @@ del ""%~f0""
         using var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
         response.EnsureSuccessStatusCode();
 
+        var totalBytes = response.Content.Headers.ContentLength ?? 0;
+        var downloadedBytes = 0L;
+
         using var stream = await response.Content.ReadAsStreamAsync();
         using var fileStream = File.Create(savePath);
 
-        await stream.CopyToAsync(fileStream);
+        var buffer = new byte[8192];
+        int bytesRead;
+        while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+        {
+            await fileStream.WriteAsync(buffer, 0, bytesRead);
+            downloadedBytes += bytesRead;
+
+            if (totalBytes > 0)
+            {
+                var progress = (double)downloadedBytes / totalBytes * 100;
+                Console.Write($"\r{string.Format(AppLang.下载进度, progress, downloadedBytes, totalBytes)}");
+            }
+        }
+        Console.WriteLine();
     }
 
     /// <summary>

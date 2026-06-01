@@ -14,6 +14,7 @@ public class LocalStorageService : ILocalStorageService
     private readonly string _currentVersionPath;
     private readonly string _versionsPath;
     private readonly string _binPath;
+    private readonly string _downloadsPath;
 
     /// <summary>
     /// 构造函数
@@ -26,11 +27,13 @@ public class LocalStorageService : ILocalStorageService
         _versionsPath = Path.Combine(_basePath, "versions");
         _currentVersionPath = Path.Combine(_basePath, "current");
         _binPath = Path.Combine(_basePath, "bin");
+        _downloadsPath = Path.Combine(_basePath, "downloads");
 
         // 确保目录存在
         Directory.CreateDirectory(_basePath);
         Directory.CreateDirectory(_versionsPath);
         Directory.CreateDirectory(_binPath);
+        Directory.CreateDirectory(_downloadsPath);
     }
 
     /// <summary>
@@ -80,6 +83,15 @@ public class LocalStorageService : ILocalStorageService
     public string GetBinPath()
     {
         return _binPath;
+    }
+
+    /// <summary>
+    /// 获取 Zigm 的 downloads 目录路径（用于存储下载的文件）
+    /// </summary>
+    /// <returns>downloads 目录路径</returns>
+    public string GetDownloadsPath()
+    {
+        return _downloadsPath;
     }
 
     /// <summary>
